@@ -1,7 +1,15 @@
-2025-09-18 15:24:31 Phase Data:
-Array
-(
-    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'd0n1e/eu4QhRXgHDdKX7MKVQMZ4Du5lIuxyowghrlps='.
-)
+2025-09-18 15:43:06 URL: https://api.open-meteo.com/v1/astronomy?latitude=51.6141&longitude=-0.3362&daily=moon_phase,moon_illumination&start_date=2025-09-18&end_date=2025-09-18
+2025-09-18 15:43:08 Response Preview: {"reason":"Not Found","error":true}
 
+2025-09-18 15:45:04 URL: https://api.open-meteo.com/v1/astronomy?latitude=51.6141&longitude=-0.3362&start_date=2025-09-18&end_date=2025-09-18&timezone=auto
+2025-09-18 15:45:06 Response Preview: {"error":true,"reason":"Not Found"}
+
+2025-09-18 15:50:00 URL: https://api.open-meteo.com/v1/astronomy?latitude=51.6141&longitude=-0.3362&start_date=2025-09-18&end_date=2025-09-18&timezone=auto
+2025-09-18 15:50:02 Response Preview: {"error":true,"reason":"Not Found"}
+
+2025-09-18 15:51:21 URL: https://api.open-meteo.com/v1/astronomy?latitude=51.6141&longitude=-0.3362&start_date=2025-09-18&end_date=2025-09-18&timezone=auto
+2025-09-18 15:51:24 Response Preview: {"error":true,"reason":"Not Found"}
+
+2025-09-18 15:51:31 URL: https://api.open-meteo.com/v1/astronomy?latitude=40&longitude=45&start_date=2025-09-18&end_date=2025-09-18&timezone=auto
+2025-09-18 15:51:33 Response Preview: {"error":true,"reason":"Not Found"}
 

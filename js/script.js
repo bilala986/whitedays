@@ -32,37 +32,68 @@ $(document).ready(function () {
         return `${yyyy}-${mm}-${dd}`;
     }
 
-    // AJAX call to moon.php
+    // AJAX call for moon
     function fetchMoon(lat, lon, date) {
         const $moonImg = $("#moon-img");
         const $preloader = $("#moon-preloader");
 
-        // Reset
         $moonImg.hide();
         $preloader.show();
 
-        $.getJSON("api/moon.php", { lat, lon, date })
-            .done(function(data) {
-                console.log("Moon Image API Response:", data); // DEBUG
-                if (data.status === "success" && data.imageUrl) {
-                    // Set image src
-                    $moonImg.attr("src", data.imageUrl);
+        // Use flags to track readiness
+        window.moonImageReady = false;
+        window.moonDetailsReady = false;
 
-                    // Wait for image to fully load
+        $.getJSON("api/moon-image.php", { lat, lon, date })
+            .done(function(data) {
+                console.log("Moon Image API Response:", data);
+                if (data.status === "success" && data.imageUrl) {
+                    $moonImg.attr("src", data.imageUrl);
                     $moonImg.on("load", function() {
-                        $preloader.fadeOut(400); // fade out spinner
-                        $moonImg.fadeIn(400);    // fade in image
+                        $moonImg.fadeIn(400);
+                        window.moonImageReady = true;
+                        if (window.moonDetailsReady) {
+                            $preloader.fadeOut(400);
+                        }
                     });
                 } else {
                     console.warn("Moon image not available");
-                    $preloader.hide();
+                    window.moonImageReady = true;
+                    if (window.moonDetailsReady) $preloader.fadeOut(400);
                 }
             })
-            .fail(function(xhr, status, error) {
-                console.error("AJAX Error:", status, error);
-                $preloader.hide();
+            .fail(function() {
+                console.error("Moon image AJAX error");
+                window.moonImageReady = true;
+                if (window.moonDetailsReady) $preloader.fadeOut(400);
             });
     }
+
+    function fetchMoonDetails(lat, lon, date) {
+        const $preloader = $("#moon-preloader");
+
+        $.getJSON("api/moon-details.php", { lat, lon, date })
+            .done(function(data) {
+                console.log("Moon Details API Response:", data);
+                if (data.status === "success") {
+                    $("#moon-info").html(
+                        `Current Phase: ${data.phaseName} (${data.illumination}%)<br>` +
+                        `Next Full Moon: ${data.nextFullMoonDate} 🌕`
+                    );
+                } else {
+                    $("#moon-info").text("Error: " + (data.message || "Unknown error"));
+                }
+                window.moonDetailsReady = true;
+                if (window.moonImageReady) $preloader.fadeOut(400);
+            })
+            .fail(function() {
+                $("#moon-info").text("Error: Could not contact server.");
+                window.moonDetailsReady = true;
+                if (window.moonImageReady) $preloader.fadeOut(400);
+            });
+    }
+
+
 
 
 
@@ -90,6 +121,7 @@ $(document).ready(function () {
                 const lon = pos.coords.longitude;
                 const today = formatDate(new Date());
                 fetchMoon(lat, lon, today);
+                fetchMoonDetails(lat, lon, today);
             },
             (err) => {
                 console.warn("Geolocation failed or denied.", err);
@@ -114,5 +146,6 @@ $(document).ready(function () {
             return;
         }
         fetchMoon(lat, lon, today);
+        fetchMoonDetails(lat, lon, today);
     });
 });
