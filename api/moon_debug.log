@@ -1,0 +1,2596 @@
+2025-09-18 11:12:56 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:12:57 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:13:05 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:13:06 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:15:50 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:15:50 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:17:07 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:17:08 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:27:48 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:27:49 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:28:04 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:28:04 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:35:57 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:35:58 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:36:30 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:36:31 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:39:17 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:39:18 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:44:27 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:44:28 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:44:34 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:44:34 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:46:50 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:46:50 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:46:55 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:46:56 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:48:03 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:48:03 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:48:10 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:48:11 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:50:38 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:50:39 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:53:09 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:53:09 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:55:02 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:55:02 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:56:26 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:56:27 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:56:54 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:56:55 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:57:01 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:57:02 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+
+2025-09-18 11:57:50 Current Data:
+Array
+(
+    [statusCode] => 422
+    [errors] => Array
+        (
+            [0] => Array
+                (
+                    [path] => Array
+                        (
+                        )
+
+                    [property] => instance
+                    [message] => requires property "time"
+                    [schema] => Array
+                        (
+                            [type] => object
+                            [required] => Array
+                                (
+                                    [0] => latitude
+                                    [1] => longitude
+                                    [2] => elevation
+                                    [3] => from_date
+                                    [4] => to_date
+                                    [5] => time
+                                )
+
+                            [properties] => Array
+                                (
+                                    [latitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -90
+                                            [maximum] => 90
+                                        )
+
+                                    [longitude] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => -180
+                                            [maximum] => 180
+                                        )
+
+                                    [elevation] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 5000
+                                        )
+
+                                    [from_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [to_date] => Array
+                                        (
+                                            [type] => string
+                                            [format] => date
+                                        )
+
+                                    [time] => Array
+                                        (
+                                            [type] => string
+                                            [format] => time
+                                        )
+
+                                    [output] => Array
+                                        (
+                                            [type] => string
+                                            [enum] => Array
+                                                (
+                                                    [0] => table
+                                                    [1] => rows
+                                                )
+
+                                        )
+
+                                    [total_day_count] => Array
+                                        (
+                                            [type] => number
+                                            [minimum] => 0
+                                            [maximum] => 366
+                                        )
+
+                                )
+
+                        )
+
+                    [instance] => Array
+                        (
+                            [bodies] => moon
+                            [elevation] => 0
+                            [from_date] => 2025-09-18
+                            [latitude] => 51.6141
+                            [longitude] => -0.3362
+                            [to_date] => 2025-09-18
+                            [total_day_count] => 0
+                        )
+
+                    [name] => required
+                    [argument] => time
+                    [stack] => instance requires property "time"
+                )
+
+        )
+
+)
+
+
+2025-09-18 11:57:50 Full Moon Data:
+Array
+(
+    [message] => Invalid key=value pair (missing equal-sign) in Authorization header (hashed with SHA-256 and encoded with Base64): 'ftbx2cPQShoTQ44xhM57+fLfoIThDFUYdu1agFfb2h0='.
+)
+
+

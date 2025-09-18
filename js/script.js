@@ -3,6 +3,25 @@ $(document).ready(function () {
     const $moonInfo = $("#moon-info");
     const $currentDate = $("#current-date");
     const $locationForm = $("#location-form");
+    const $hijriInfo = $("#hijri-info");
+    const $hijriDay = $("#hijri-day");
+    const $hijriMonth = $("#hijri-month");
+    const $hijriYear = $("#hijri-year");
+
+    // --- Hijri date display ---
+    function updateHijri() {
+        const todayHijri = HijriJS.today();
+        if (todayHijri) {
+            $hijriInfo.text(`${todayHijri.day}/${todayHijri.month}/${todayHijri.year} H`);
+            $hijriDay.text(`Day: ${todayHijri.day}`);
+            $hijriMonth.text(`Month: ${todayHijri.month}`);
+            $hijriYear.text(`Year: ${todayHijri.year}`);
+        } else {
+            $hijriInfo.text("Error calculating Hijri date");
+        }
+    }
+
+    updateHijri(); // Call once on page load
 
     // Utility: format date as YYYY-MM-DD
     function formatDate(date) {
@@ -53,11 +72,13 @@ $(document).ready(function () {
     // Manual location submission
     $locationForm.on("submit", function (e) {
         e.preventDefault();
-        const lat = parseFloat($("#city").find(":selected").data("lat"));
-        const lon = parseFloat($("#city").find(":selected").data("lon"));
+        const selected = $countrySelect.find(":selected");
+        const lat = parseFloat(selected.data("lat"));
+        const lon = parseFloat(selected.data("lon"));
         const today = formatDate(new Date());
+
         if (!lat || !lon) {
-            alert("Please select a valid city.");
+            alert("Please select a valid country.");
             return;
         }
         fetchMoon(lat, lon, today);
