@@ -7,6 +7,7 @@ $(document).ready(function () {
     const $hijriDay = $("#hijri-day");
     const $hijriMonth = $("#hijri-month");
     const $hijriYear = $("#hijri-year");
+    const $countrySelect = $("#country");
 
     // --- Hijri date display ---
     function updateHijri() {
@@ -49,6 +50,22 @@ $(document).ready(function () {
                 $moonInfo.text("Error: Could not contact server.");
             });
     }
+
+    // Load countries into dropdown
+    $.getJSON("json/countries.json", function (data) {
+        data.forEach(function (country) {
+            $countrySelect.append(
+                $("<option>", {
+                    value: country.name,
+                    text: `${country.emoji} ${country.name}`,
+                    "data-lat": country.latitude,
+                    "data-lon": country.longitude
+                })
+            );
+        });
+    }).fail(function () {
+        console.error("Could not load countries.json");
+    });
 
     // Geolocation
     if (navigator.geolocation) {

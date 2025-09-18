@@ -58,34 +58,41 @@
                 <!-- Right Column: Hijri date & location form -->
                 <div class="col-md-6 mb-4">
                     <section class="mb-5 text-center"> <!-- more spacing below Hijri -->
-                        <h2 class="h5 mb-3">Hijri Calendar</h2>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <p id="hijri-info" class="mb-0 fs-4 me-2">Calculating...</p>
-                            <!-- Info icon button -->
-                            <button type="button" class="btn btn-outline-light btn-sm rounded-circle p-1" 
-                                    id="hijri-info-btn" title="Hijri details">ℹ️</button>
-                        </div>
-                    </section>
+                    <h2 class="h5 mb-3">Hijri Calendar</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p id="hijri-info" class="mb-0 fs-4 me-2">Calculating...</p>
+                        <!-- Info icon button (opens modal now) -->
+                        <button type="button" 
+                                class="btn btn-outline-light btn-sm rounded-circle p-1" 
+                                id="hijri-info-btn" 
+                                title="Hijri details"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#hijriModal">
+                            ℹ️
+                        </button>
+                    </div>
+                </section>
 
-                    <!-- Hijri Info Modal -->
-                    <div class="modal fade" id="hijriModal" tabindex="-1" aria-labelledby="hijriModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content bg-dark text-light">
-                                <div class="modal-header border-bottom border-secondary">
-                                    <h5 class="modal-title" id="hijriModalLabel">Hijri Date Details</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p id="hijri-day">Day: </p>
-                                    <p id="hijri-month">Month: </p>
-                                    <p id="hijri-year">Year: </p>
-                                </div>
-                                <div class="modal-footer border-top border-secondary">
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                </div>
+                <!-- Hijri Info Modal -->
+                <div class="modal fade" id="hijriModal" tabindex="-1" aria-labelledby="hijriModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-light">
+                            <div class="modal-header border-bottom border-secondary">
+                                <h5 class="modal-title" id="hijriModalLabel">Hijri Date Details</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="hijri-day">Day: </p>
+                                <p id="hijri-month">Month: </p>
+                                <p id="hijri-year">Year: </p>
+                            </div>
+                            <div class="modal-footer border-top border-secondary">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
+                </div>
+
 
 
                     <section class="mt-4">
