@@ -1,6 +1,4 @@
 <?php
-// moon.php
-
 header("Content-Type: application/json");
 require_once "config.php";
 
@@ -17,40 +15,13 @@ if (!$lat || !$lon) {
     exit;
 }
 
-// Auth header
+// Auth
 $auth = base64_encode(ASTRO_APP_ID . ":" . ASTRO_APP_SECRET);
 
-// ---------- Moon Image (studio/moon-phase) ----------
-$studioUrl = "https://api.astronomyapi.com/api/v2/studio/moon-phase";
-
-$moonBody = [
-    "format" => "png",
-    "observer" => [
-        "latitude" => (float)$lat,
-        "longitude" => (float)$lon,
-        "date" => $date
-    ],
-    "style" => [
-        "moonStyle" => "default",
-        "backgroundStyle" => "solid",      // plain background
-        "backgroundColor" => "black",      // black background
-        "headingColor" => "black",         // hide heading
-        "textColor" => "black"             // hide phase labels
-    ],
-    "view" => [
-        "type" => "portrait-simple",
-        "orientation" => "south-up"
-    ]
-];
-
-$studioPayload = json_encode($moonBody);
-
+// ---------- Utility: Call API ----------
 function callAPI($url, $payload = null, $auth, $isPost = true) {
     $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Authorization: Basic $auth",
-        "Content-Type: application/json"
-    ]);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Basic $auth", "Content-Type: application/json"]);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     if ($isPost && $payload) {
         curl_setopt($ch, CURLOPT_POST, true);
@@ -63,53 +34,55 @@ function callAPI($url, $payload = null, $auth, $isPost = true) {
     return json_decode($response, true);
 }
 
-// Get moon image
-$studioData = callAPI($studioUrl, $studioPayload, $auth);
-if (isset($studioData['error'])) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Moon image request failed: " . $studioData['error']
-    ]);
-    exit;
-}
+// ---------- Moon Image ----------
+$studioUrl = "https://api.astronomyapi.com/api/v2/studio/moon-phase";
+$studioBody = [
+    "format" => "png",
+    "observer" => [
+        "latitude" => (float)$lat,
+        "longitude" => (float)$lon,
+        "date" => $date
+    ],
+    "style" => [
+        "moonStyle" => "default",
+        "backgroundStyle" => "solid",
+        "backgroundColor" => "black",
+        "headingColor" => "black",
+        "textColor" => "black"
+    ],
+    "view" => [
+        "type" => "portrait-simple",
+        "orientation" => "south-up"
+    ]
+];
 
-// ---------- Moon Details (bodies/positions) ----------
-$detailsUrl = "https://api.astronomyapi.com/api/v2/bodies/positions";
-$detailsUrl .= "?latitude={$lat}&longitude={$lon}&from_date={$date}&to_date={$date}&elevation=0&bodies=moon";
+$studioData = callAPI($studioUrl, json_encode($studioBody), $auth);
+$imageUrl = $studioData['data']['imageUrl'] ?? null;
 
-$detailsData = callAPI($detailsUrl, null, $auth, false);
-if (isset($detailsData['error'])) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Moon details request failed: " . $detailsData['error']
-    ]);
-    exit;
-}
+// ---------- Current Moon Phase ----------
+$positionsUrl = "https://api.astronomyapi.com/api/v2/bodies/positions";
+$positionsUrl .= "?latitude={$lat}&longitude={$lon}&from_date={$date}&to_date={$date}&elevation=0&bodies=moon";
 
-// Extract details safely
-$cell = $detailsData['data']['table']['rows'][0]['cells'][0] ?? null;
+$positionsData = callAPI($positionsUrl, null, $auth, false);
 
-$phaseName    = $cell['position']['phase']['name'] ?? null;
-$illumination = isset($cell['position']['phase']['illumination']) ? $cell['position']['phase']['illumination'] : null;
-$moonrise     = $cell['rise'] ?? null;
-$moonset      = $cell['set'] ?? null;
+$phaseName = $positionsData['data']['table']['rows'][0]['cells'][0]['position']['phase']['name'] ?? "Unknown";
+$illumination = $positionsData['data']['table']['rows'][0]['cells'][0]['position']['phase']['illumination'] ?? 0;
 
-// Build moon details HTML without N/A
-$detailsHtml = "";
-if ($phaseName) $detailsHtml .= "Phase: {$phaseName}<br>";
-if ($illumination !== null) $detailsHtml .= "Illumination: {$illumination}%<br>";
-if ($moonrise) $detailsHtml .= "Moonrise: {$moonrise}<br>";
-if ($moonset) $detailsHtml .= "Moonset: {$moonset}<br>";
-if ($detailsHtml === "") $detailsHtml = "No moon data available.";
+// ---------- Next Full Moon ----------
+$phaseUrl = "https://api.astronomyapi.com/api/v2/astronomy/phase";
+$phaseUrl .= "?latitude={$lat}&longitude={$lon}&date={$date}&type=full_moon";
+
+$phaseData = callAPI($phaseUrl, null, $auth, false);
+$nextFullMoon = $phaseData['data']['phase']['time'] ?? null;
+$nextFullMoonDate = $nextFullMoon ? date("Y-m-d", strtotime($nextFullMoon)) : "Unknown";
+
+// ---------- Build Details ----------
+$detailsHtml = "Current Phase: $phaseName (" . round($illumination*100) . "%)<br>Next Full Moon: $nextFullMoonDate 🌕";
 
 // Return JSON
 echo json_encode([
     "status" => "success",
     "date" => $date,
-    "imageUrl" => $studioData['data']['imageUrl'] ?? null,
-    "phaseName" => $phaseName,
-    "illumination" => $illumination,
-    "moonrise" => $moonrise,
-    "moonset" => $moonset,
+    "imageUrl" => $imageUrl,
     "detailsHtml" => $detailsHtml
 ]);
