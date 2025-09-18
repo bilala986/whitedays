@@ -34,22 +34,37 @@ $(document).ready(function () {
 
     // AJAX call to moon.php
     function fetchMoon(lat, lon, date) {
-        $moonInfo.text("Loading...");
+        const $moonImg = $("#moon-img");
+        const $preloader = $("#moon-preloader");
+
+        // Reset
+        $moonImg.hide();
+        $preloader.show();
 
         $.getJSON("api/moon.php", { lat, lon, date })
-            .done(function (data) {
-                if (data.status === "success") {
-                    $currentDate.text(data.date);
-                    $moonImg.attr("src", data.imageUrl || "");
-                    $moonInfo.html(data.detailsHtml || "");
+            .done(function(data) {
+                console.log("Moon Image API Response:", data); // DEBUG
+                if (data.status === "success" && data.imageUrl) {
+                    // Set image src
+                    $moonImg.attr("src", data.imageUrl);
+
+                    // Wait for image to fully load
+                    $moonImg.on("load", function() {
+                        $preloader.fadeOut(400); // fade out spinner
+                        $moonImg.fadeIn(400);    // fade in image
+                    });
                 } else {
-                    $moonInfo.text("Error: " + data.message);
+                    console.warn("Moon image not available");
+                    $preloader.hide();
                 }
             })
-            .fail(function () {
-                $moonInfo.text("Error: Could not contact server.");
+            .fail(function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                $preloader.hide();
             });
     }
+
+
 
     // Load countries into dropdown
     $.getJSON("json/countries.json", function (data) {
