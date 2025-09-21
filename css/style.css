@@ -13,3 +13,141 @@ select:disabled {
     color: #888;
     cursor: not-allowed;
 }
+
+
+/* ------------------------------
+   Base Body & Background
+--------------------------------*/
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #0a0a1a, #000000);
+    color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+/* ------------------------------
+   Subtle Noise Overlay
+--------------------------------*/
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: url('images/noise.png'); /* tiny transparent noise texture */
+    opacity: 0.05;
+    z-index: 1;
+}
+
+/* ------------------------------
+   Stars Background
+--------------------------------*/
+@keyframes twinkle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.2; }
+}
+
+.stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: transparent;
+}
+
+.star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+/* ------------------------------
+   Moon Glow Effect
+--------------------------------*/
+.moon-img {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.moon-img:hover {
+    box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.25);
+}
+
+/* ------------------------------
+   Text & Button Readability
+--------------------------------*/
+h1, h2, p, label {
+    position: relative;
+    z-index: 2; /* ensure text is above background stars */
+}
+
+.btn-outline-light {
+    color: #f0f0f0;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-light:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ------------------------------
+   Hijri Button Text
+--------------------------------*/
+#hijri-info-btn {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    z-index: 2;
+}
+
+/* ------------------------------
+   Footer
+--------------------------------*/
+footer {
+    position: relative;
+    z-index: 2;
+}
+
+/* ------------------------------
+   Moon background transparent
+--------------------------------*/
+
+.moon-img {
+    mix-blend-mode: screen; /* or lighten, depending on your background */
+    background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
