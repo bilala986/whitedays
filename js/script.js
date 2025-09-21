@@ -35,39 +35,7 @@ $(document).ready(function () {
 
     updateHijri(); // Call once on page load
     
-    function updateWhiteDays() {
-        const todayHijri = HijriJS.today();
-        if (!todayHijri) return;
-
-        const day = todayHijri.day;
-        const statusEl = $("#white-days-status");
-        const countdownEl = $("#white-days-countdown");
-
-        if (day >= 13 && day <= 15) {
-            statusEl.text("Today is a White Day 🌕");
-            countdownEl.hide();
-        } else {
-            statusEl.text("Today is NOT a White Day");
-            // Compute days/hours until next white day
-            let nextWhiteDay;
-            if (day < 13) nextWhiteDay = 13;
-            else nextWhiteDay = 13 + 30; // next month's 13th (approx)
-
-            let daysUntil = nextWhiteDay - day;
-            // Approx hours until 00:00 of that day
-            let hoursUntil = (daysUntil * 24);
-            countdownEl.text(`Next White Day in ${daysUntil} day(s) and ~${hoursUntil} hour(s)`);
-            countdownEl.show();
-        }
-    }
-
-    // Initial call
-    updateWhiteDays();
-
-    // Optional: refresh every hour
-    setInterval(updateWhiteDays, 60 * 60 * 1000);
-
-
+    
     // Utility: format date as YYYY-MM-DD
     function formatDate(date) {
         const yyyy = date.getFullYear();
@@ -75,6 +43,86 @@ $(document).ready(function () {
         const dd = String(date.getDate()).padStart(2, "0");
         return `${yyyy}-${mm}-${dd}`;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function updateWhiteDayInfo() {
+        const todayHijri = HijriJS.today();
+        if (!todayHijri) return;
+
+        const day = todayHijri.day;
+        const month = todayHijri.month;
+        const year = todayHijri.year;
+
+        const $info = $("#white-day-info");
+
+        // Create message element
+        let message = "";
+        let countdown = "";
+
+        // White days: 13th, 14th, 15th
+        if (day >= 13 && day <= 15) {
+            message = "<strong>It is currently a White Day!</strong>";
+            countdown = ""; // no countdown during White Days
+        } else {
+            message = "<strong>It is not a White Day.</strong>";
+
+            // Determine next 13th
+            let next13Month = month;
+            let next13Year = year;
+
+            if (day > 15) {
+                next13Month += 1;
+                if (next13Month > 12) {
+                    next13Month = 1;
+                    next13Year += 1;
+                }
+            }
+
+            // Hijri month length using Umm al-Qura data
+            let currentMonthIndex = (year - 1) * 12 + month - 1;
+            let nextMonthIndex = currentMonthIndex + 1;
+            let daysThisMonth = HijriJS.ummalqura_dat[nextMonthIndex] - HijriJS.ummalqura_dat[currentMonthIndex];
+            if (!daysThisMonth) daysThisMonth = 30; // fallback
+
+            let daysUntilNext13;
+            if (day < 13) {
+                daysUntilNext13 = 13 - day;
+            } else {
+                daysUntilNext13 = daysThisMonth - day + 13;
+            }
+
+            countdown = `Next White Day in <strong>${daysUntilNext13}</strong> day(s)`;
+        }
+
+        // Render
+        $info.html(`${message}<br>${countdown}`);
+    }
+
+    // Call once immediately
+    updateWhiteDayInfo();
+
+    // Update dynamically every minute
+    setInterval(updateWhiteDayInfo, 60 * 1000);
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
 
     // AJAX call for moon image
     function fetchMoon(lat, lon, date) {
