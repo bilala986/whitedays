@@ -202,7 +202,7 @@ $(document).ready(function () {
                     $("#moon-info").html(
                         `Current Phase: ${data.phaseName} (${data.illumination}%)<br>` +
                         `Next Full Moon: ${data.nextFullMoonDate}<br>` +
-                        `<small class="text-muted">Disclaimer: These values are approximate and may be slightly inaccurate.</small>`
+                        `<small class="text-secondary">Disclaimer: These values are approximate and may be slightly inaccurate.</small>`
                     );
                 } else {
                     $("#moon-info").text("Error: " + (data.message || "Unknown error"));
