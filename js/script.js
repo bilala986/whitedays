@@ -8,19 +8,30 @@ $(document).ready(function () {
     const $hijriMonth = $("#hijri-month");
     const $hijriYear = $("#hijri-year");
     const $countrySelect = $("#country");
+    const $gregorianDate = $("#gregorian-date");
 
-    // --- Hijri date display ---
+    // --- Hijri & Gregorian date display ---
     function updateHijri() {
         const todayHijri = HijriJS.today();
         if (todayHijri) {
+            // Hijri date
             $hijriInfo.text(`${todayHijri.day}/${todayHijri.month}/${todayHijri.year} H`);
             $hijriDay.text(`Day: ${todayHijri.day}`);
             $hijriMonth.text(`Month: ${todayHijri.month}`);
             $hijriYear.text(`Year: ${todayHijri.year}`);
+
+            // Gregorian date in same format
+            const todayGregorian = new Date();
+            const dd = String(todayGregorian.getDate()).padStart(2, "0");
+            const mm = String(todayGregorian.getMonth() + 1).padStart(2, "0");
+            const yyyy = todayGregorian.getFullYear();
+            $gregorianDate.text(`${dd}/${mm}/${yyyy}`);
         } else {
             $hijriInfo.text("Error calculating Hijri date");
+            $gregorianDate.text("");
         }
     }
+
 
     updateHijri(); // Call once on page load
 
@@ -40,7 +51,7 @@ $(document).ready(function () {
         $moonImg.hide();
         $preloader.show();
 
-        // Use flags to track readiness
+        // Initialize global flags if not already
         window.moonImageReady = false;
         window.moonDetailsReady = false;
 
@@ -52,9 +63,7 @@ $(document).ready(function () {
                     $moonImg.on("load", function() {
                         $moonImg.fadeIn(400);
                         window.moonImageReady = true;
-                        if (window.moonDetailsReady) {
-                            $preloader.fadeOut(400);
-                        }
+                        if (window.moonDetailsReady) $preloader.fadeOut(400);
                     });
                 } else {
                     console.warn("Moon image not available");
@@ -78,7 +87,7 @@ $(document).ready(function () {
                 if (data.status === "success") {
                     $("#moon-info").html(
                         `Current Phase: ${data.phaseName} (${data.illumination}%)<br>` +
-                        `Next Full Moon: ${data.nextFullMoonDate} 🌕`
+                        `Next Full Moon: ${data.nextFullMoonDate}`
                     );
                 } else {
                     $("#moon-info").text("Error: " + (data.message || "Unknown error"));
@@ -97,8 +106,11 @@ $(document).ready(function () {
 
 
 
-    // Load countries into dropdown
+
+    let countriesData = [];
+
     $.getJSON("json/countries.json", function (data) {
+        countriesData = data; // save all countries
         data.forEach(function (country) {
             $countrySelect.append(
                 $("<option>", {
@@ -113,29 +125,54 @@ $(document).ready(function () {
         console.error("Could not load countries.json");
     });
 
-    // Geolocation
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 const lat = pos.coords.latitude;
                 const lon = pos.coords.longitude;
                 const today = formatDate(new Date());
+
+                // Find closest country
+                let closestCountry = null;
+                let minDistance = Infinity;
+
+                countriesData.forEach((c) => {
+                    const dLat = lat - c.latitude;
+                    const dLon = lon - c.longitude;
+                    const dist = Math.sqrt(dLat*dLat + dLon*dLon);
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        closestCountry = c;
+                    }
+                });
+
+                // If found, set dropdown value
+                if (closestCountry) {
+                    $countrySelect.val(closestCountry.name);
+                }
+
+                // Fetch moon image & details
                 fetchMoon(lat, lon, today);
                 fetchMoonDetails(lat, lon, today);
             },
             (err) => {
                 console.warn("Geolocation failed or denied.", err);
+                $countrySelect.val(""); // fallback: show default "Country"
                 $locationForm.show();
             }
         );
     } else {
         console.warn("Geolocation not supported.");
+        $countrySelect.val(""); // fallback: show default "Country"
         $locationForm.show();
     }
+
 
     // Manual location submission
     $locationForm.on("submit", function (e) {
         e.preventDefault();
+
         const selected = $countrySelect.find(":selected");
         const lat = parseFloat(selected.data("lat"));
         const lon = parseFloat(selected.data("lon"));
@@ -145,7 +182,18 @@ $(document).ready(function () {
             alert("Please select a valid country.");
             return;
         }
+
+        // Show preloader over both image and details
+        const $preloader = $("#moon-preloader");
+        $preloader.show();
+
+        // Reset flags for coordinated preloader fade-out
+        window.moonImageReady = false;
+        window.moonDetailsReady = false;
+
+        // Fetch moon image and details for the selected country
         fetchMoon(lat, lon, today);
         fetchMoonDetails(lat, lon, today);
     });
+
 });

@@ -1,74 +1,130 @@
 <?php
 header("Content-Type: application/json");
 
-$lat  = $_POST['lat'] ?? $_GET['lat'] ?? null;
-$lon  = $_POST['lon'] ?? $_GET['lon'] ?? null;
+// Simple moon-details implementation (no external API)
+// Computes phase fraction, illumination %, phase name and next full moon date (approx).
+
+$lat  = $_POST['lat'] ?? $_GET['lat'] ?? null;   // kept for compatibility (not used)
+$lon  = $_POST['lon'] ?? $_GET['lon'] ?? null;   // kept for compatibility (not used)
 $date = $_POST['date'] ?? $_GET['date'] ?? date("Y-m-d");
 
-if (!$lat || !$lon) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Latitude and longitude required"
-    ]);
+// minimal validation
+if (!$date) {
+    echo json_encode(["status" => "error", "message" => "Date required"]);
     exit;
 }
 
-// Open-Meteo Moon API
-$apiUrl = "https://api.open-meteo.com/v1/astronomy?latitude={$lat}&longitude={$lon}&start_date={$date}&end_date={$date}&timezone=auto";
+// logging helper
+function dbg($msg) {
+    file_put_contents(__DIR__ . "/moon_debug.log", date("Y-m-d H:i:s") . " " . $msg . "\n", FILE_APPEND);
+}
 
-// Log the API URL
-file_put_contents("moon_debug.log", date("Y-m-d H:i:s") . " URL: $apiUrl\n", FILE_APPEND);
-
-// Initialize cURL
-$ch = curl_init($apiUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-$response = curl_exec($ch);
-$err = curl_error($ch);
-curl_close($ch);
-
-// Log cURL errors
-if ($err) {
-    file_put_contents("moon_debug.log", date("Y-m-d H:i:s") . " cURL Error: $err\n", FILE_APPEND);
-    echo json_encode(["status" => "error", "message" => "Could not contact Open-Meteo"]);
+// Parse date
+$ts = strtotime($date);
+if ($ts === false) {
+    echo json_encode(["status" => "error", "message" => "Invalid date"]);
     exit;
 }
 
-// Decode the response
-$data = json_decode($response, true);
+list($Y, $M, $D) = explode('-', date('Y-m-d', $ts));
 
-// Log a preview of the response
-file_put_contents("moon_debug.log", date("Y-m-d H:i:s") . " Response Preview: " . substr($response, 0, 500) . "\n\n", FILE_APPEND);
+/**
+ * Compute simple moon phase fraction (0..1) for a given date
+ * Source: common simple algorithm found in public domain (approximate)
+ * Returns fraction where 0 = new moon, 0.5 = full moon.
+ */
+function moon_fraction($year, $month, $day) {
+    // convert to ints
+    $y = (int)$year;
+    $m = (int)$month;
+    $d = (float)$day;
 
-// Extract moon info from new format
-$phaseDecimal = $data['moon_phase'] ?? 0;  // fraction 0-1
-$illumination = isset($data['moon_illumination']) ? round($data['moon_illumination'] * 100) : 0;
+    if ($m < 3) {
+        $y -= 1;
+        $m += 12;
+    }
 
-// Convert fraction to human-readable phase
-if ($phaseDecimal == 0) {
-    $phaseName = "New Moon";
-} elseif ($phaseDecimal > 0 && $phaseDecimal < 0.25) {
-    $phaseName = "Waxing Crescent";
-} elseif ($phaseDecimal == 0.25) {
-    $phaseName = "First Quarter";
-} elseif ($phaseDecimal > 0.25 && $phaseDecimal < 0.5) {
-    $phaseName = "Waxing Gibbous";
-} elseif ($phaseDecimal == 0.5) {
-    $phaseName = "Full Moon";
-} elseif ($phaseDecimal > 0.5 && $phaseDecimal < 0.75) {
-    $phaseName = "Waning Gibbous";
-} elseif ($phaseDecimal == 0.75) {
-    $phaseName = "Last Quarter";
-} else { // 0.75–1
-    $phaseName = "Waning Crescent";
+    // the algorithm uses an epoch; values are tuned for reasonable accuracy
+    $yTerm = floor(365.25 * $y);
+    $mTerm = floor(30.6 * ($m + 1)); // month index shifted by +1
+    $jd = $yTerm + $mTerm + $d - 694039.09; // days since known new moon epoch
+    $jd /= 29.5305882; // divide by lunar cycle length
+    $frac = $jd - floor($jd);
+    if ($frac < 0) $frac += 1.0;
+    return $frac; // 0..1
 }
 
-// Note: next full moon calculation is approximate; here we just echo the date as today
-$nextFullMoonDate = $date;
+/**
+ * Convert fraction -> illumination percent (approx)
+ * illumination = (1 - cos(phase*2π)) * 50
+ */
+function fraction_to_illumination($frac) {
+    $illum = (1 - cos(2 * M_PI * $frac)) * 50.0;
+    return (int) round($illum);
+}
+
+/**
+ * Convert fraction -> textual phase
+ */
+function fraction_to_phase_name($frac) {
+    $eps = 0.03; // tolerance
+    if ($frac < $eps || $frac > 1 - $eps) {
+        return "New Moon";
+    } elseif ($frac > 0 && $frac < 0.25 - $eps) {
+        return "Waxing Crescent";
+    } elseif (abs($frac - 0.25) <= $eps) {
+        return "First Quarter";
+    } elseif ($frac > 0.25 + $eps && $frac < 0.5 - $eps) {
+        return "Waxing Gibbous";
+    } elseif (abs($frac - 0.5) <= $eps) {
+        return "Full Moon";
+    } elseif ($frac > 0.5 + $eps && $frac < 0.75 - $eps) {
+        return "Waning Gibbous";
+    } elseif (abs($frac - 0.75) <= $eps) {
+        return "Last Quarter";
+    } else {
+        return "Waning Crescent";
+    }
+}
+
+// compute today's fraction & illumination
+$fracToday = moon_fraction($Y, $M, $D);
+$illumination = fraction_to_illumination($fracToday);
+$phaseName = fraction_to_phase_name($fracToday);
+
+// find next full moon within the next N days (use 60 days window to be safe)
+$searchDays = 60;
+$bestDiff = PHP_FLOAT_MAX;
+$bestDate = null;
+
+for ($i = 0; $i <= $searchDays; $i++) {
+    $ts2 = strtotime("+$i day", $ts);
+    $y2 = (int)date('Y', $ts2);
+    $m2 = (int)date('n', $ts2);
+    $d2 = (int)date('j', $ts2);
+    $f = moon_fraction($y2, $m2, $d2);
+    // distance from full moon (0.5)
+    $diff = abs($f - 0.5);
+    if ($diff < $bestDiff) {
+        $bestDiff = $diff;
+        $bestDate = date('Y-m-d', $ts2);
+    }
+    // stop early if very close to exact full moon
+    if ($diff <= 0.02 && $i > 0) {
+        break;
+    }
+}
+
+// If for some reason we didn't find anything, fallback to current date
+if (!$bestDate) $bestDate = $date;
+
+// Log some debug info
+dbg("Request date: $date | fracToday=" . round($fracToday,5) . " | illum={$illumination}% | phase={$phaseName} | nextFull={$bestDate}");
 
 echo json_encode([
     "status" => "success",
     "phaseName" => $phaseName,
     "illumination" => $illumination,
-    "nextFullMoonDate" => $nextFullMoonDate
+    "nextFullMoonDate" => $bestDate,
+    "date" => $date
 ]);

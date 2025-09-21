@@ -26,26 +26,47 @@
         <!-- Main Content -->
         <main class="container my-5">
 
-            <!-- Date navigation -->
-            <div class="d-flex justify-content-center align-items-center mb-4">
-                <button id="prev-btn" class="btn btn-outline-light btn-sm me-3">&#8592; Prev</button>
-                <h2 id="current-date" class="mb-0">Today</h2>
-                <button id="next-btn" class="btn btn-outline-light btn-sm ms-3">Next &#8594;</button>
-            </div>
+            <!-- Top: Hijri & Gregorian Dates -->
+            <section class="text-center mb-5">
+                <!-- Hijri Date -->
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                    <p id="hijri-info" class="mb-0 fs-3 me-2">Calculating...</p>
+                    <!-- Info icon button (opens modal) -->
+                    <button type="button" 
+                            class="btn btn-outline-light btn-sm rounded-circle p-1" 
+                            id="hijri-info-btn" 
+                            title="Hijri details"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#hijriModal">
+                        ℹ️
+                    </button>
+                </div>
+                <!-- Gregorian Date -->
+                <p id="gregorian-date" class="mb-0 text-muted small"></p>
+            </section>
 
-            <!-- Range selector -->
-            <div class="text-center mb-5">
-                <div class="btn-group" role="group" aria-label="Range selector">
-                    <button type="button" class="btn btn-outline-light active">Day</button>
-                    <button type="button" class="btn btn-outline-light">Week</button>
-                    <button type="button" class="btn btn-outline-light">Month</button>
-                    <button type="button" class="btn btn-outline-light">Year</button>
+            <!-- Hijri Info Modal -->
+            <div class="modal fade" id="hijriModal" tabindex="-1" aria-labelledby="hijriModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark text-light">
+                        <div class="modal-header border-bottom border-secondary">
+                            <h5 class="modal-title" id="hijriModalLabel">Hijri Date Details</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="hijri-day">Day: </p>
+                            <p id="hijri-month">Month: </p>
+                            <p id="hijri-year">Year: </p>
+                        </div>
+                        <div class="modal-footer border-top border-secondary">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Two-column layout -->
             <div class="row">
-
                 <!-- Left Column: Moon image & details -->
                 <div class="col-md-6 text-center mb-4 position-relative">
                     <!-- Preloader -->
@@ -71,48 +92,8 @@
                     </section>
                 </div>
 
-
-
-                <!-- Right Column: Hijri date & location form -->
+                <!-- Right Column: Location form -->
                 <div class="col-md-6 mb-4">
-                    <section class="mb-5 text-center"> <!-- more spacing below Hijri -->
-                    <h2 class="h5 mb-3">Hijri Calendar</h2>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p id="hijri-info" class="mb-0 fs-4 me-2">Calculating...</p>
-                        <!-- Info icon button (opens modal now) -->
-                        <button type="button" 
-                                class="btn btn-outline-light btn-sm rounded-circle p-1" 
-                                id="hijri-info-btn" 
-                                title="Hijri details"
-                                data-bs-toggle="modal" 
-                                data-bs-target="#hijriModal">
-                            ℹ️
-                        </button>
-                    </div>
-                </section>
-
-                <!-- Hijri Info Modal -->
-                <div class="modal fade" id="hijriModal" tabindex="-1" aria-labelledby="hijriModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content bg-dark text-light">
-                            <div class="modal-header border-bottom border-secondary">
-                                <h5 class="modal-title" id="hijriModalLabel">Hijri Date Details</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p id="hijri-day">Day: </p>
-                                <p id="hijri-month">Month: </p>
-                                <p id="hijri-year">Year: </p>
-                            </div>
-                            <div class="modal-footer border-top border-secondary">
-                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
                     <section class="mt-4">
                         <h2 class="h5 text-center mb-3">Select Location</h2>
                         <form id="location-form" class="row g-3 justify-content-center">
@@ -130,6 +111,7 @@
                 </div>
             </div>
         </main>
+
 
 
         <!-- Footer -->
