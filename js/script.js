@@ -34,6 +34,39 @@ $(document).ready(function () {
 
 
     updateHijri(); // Call once on page load
+    
+    function updateWhiteDays() {
+        const todayHijri = HijriJS.today();
+        if (!todayHijri) return;
+
+        const day = todayHijri.day;
+        const statusEl = $("#white-days-status");
+        const countdownEl = $("#white-days-countdown");
+
+        if (day >= 13 && day <= 15) {
+            statusEl.text("Today is a White Day 🌕");
+            countdownEl.hide();
+        } else {
+            statusEl.text("Today is NOT a White Day");
+            // Compute days/hours until next white day
+            let nextWhiteDay;
+            if (day < 13) nextWhiteDay = 13;
+            else nextWhiteDay = 13 + 30; // next month's 13th (approx)
+
+            let daysUntil = nextWhiteDay - day;
+            // Approx hours until 00:00 of that day
+            let hoursUntil = (daysUntil * 24);
+            countdownEl.text(`Next White Day in ${daysUntil} day(s) and ~${hoursUntil} hour(s)`);
+            countdownEl.show();
+        }
+    }
+
+    // Initial call
+    updateWhiteDays();
+
+    // Optional: refresh every hour
+    setInterval(updateWhiteDays, 60 * 60 * 1000);
+
 
     // Utility: format date as YYYY-MM-DD
     function formatDate(date) {
@@ -43,15 +76,15 @@ $(document).ready(function () {
         return `${yyyy}-${mm}-${dd}`;
     }
 
-    // AJAX call for moon
+    // AJAX call for moon image
     function fetchMoon(lat, lon, date) {
         const $moonImg = $("#moon-img");
         const $preloader = $("#moon-preloader");
+        const $moonContent = $("#moon-content");
 
-        $moonImg.hide();
+        $moonContent.hide();   // hide content while loading
         $preloader.show();
 
-        // Initialize global flags if not already
         window.moonImageReady = false;
         window.moonDetailsReady = false;
 
@@ -61,25 +94,31 @@ $(document).ready(function () {
                 if (data.status === "success" && data.imageUrl) {
                     $moonImg.attr("src", data.imageUrl);
                     $moonImg.on("load", function() {
-                        $moonImg.fadeIn(400);
                         window.moonImageReady = true;
-                        if (window.moonDetailsReady) $preloader.fadeOut(400);
+                        if (window.moonDetailsReady) {
+                            $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
+                        }
                     });
                 } else {
                     console.warn("Moon image not available");
                     window.moonImageReady = true;
-                    if (window.moonDetailsReady) $preloader.fadeOut(400);
+                    if (window.moonDetailsReady) {
+                        $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
+                    }
                 }
             })
             .fail(function() {
                 console.error("Moon image AJAX error");
                 window.moonImageReady = true;
-                if (window.moonDetailsReady) $preloader.fadeOut(400);
+                if (window.moonDetailsReady) {
+                    $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
+                }
             });
     }
 
     function fetchMoonDetails(lat, lon, date) {
         const $preloader = $("#moon-preloader");
+        const $moonContent = $("#moon-content");
 
         $.getJSON("api/moon-details.php", { lat, lon, date })
             .done(function(data) {
@@ -87,20 +126,28 @@ $(document).ready(function () {
                 if (data.status === "success") {
                     $("#moon-info").html(
                         `Current Phase: ${data.phaseName} (${data.illumination}%)<br>` +
-                        `Next Full Moon: ${data.nextFullMoonDate}`
+                        `Next Full Moon: ${data.nextFullMoonDate}<br>` +
+                        `<small class="text-muted">Disclaimer: These values are approximate and may be slightly inaccurate.</small>`
                     );
                 } else {
                     $("#moon-info").text("Error: " + (data.message || "Unknown error"));
                 }
                 window.moonDetailsReady = true;
-                if (window.moonImageReady) $preloader.fadeOut(400);
+                if (window.moonImageReady) {
+                    $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
+                }
             })
             .fail(function() {
                 $("#moon-info").text("Error: Could not contact server.");
                 window.moonDetailsReady = true;
-                if (window.moonImageReady) $preloader.fadeOut(400);
+                if (window.moonImageReady) {
+                    $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
+                }
             });
     }
+
+
+
 
 
 

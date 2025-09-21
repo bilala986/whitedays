@@ -69,12 +69,18 @@
             <div class="row">
                 <!-- Left Column: Moon image & details -->
                 <div class="col-md-6 text-center mb-4 position-relative">
+
                     <!-- Preloader -->
                     <div id="moon-preloader" style="
                         position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: black;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         z-index: 10;
                     ">
                         <div class="spinner-border text-light" role="status">
@@ -82,18 +88,28 @@
                         </div>
                     </div>
 
-                    <!-- Moon image -->
-                    <img id="moon-img" src="" alt="Current Moon Phase" class="img-fluid rounded shadow-lg mb-3 moon-img">
+                    <!-- Content container -->
+                    <div id="moon-content">
+                        <!-- Moon image -->
+                        <img id="moon-img" src="" alt="Current Moon Phase" class="img-fluid rounded shadow-lg mb-3 moon-img">
 
-                    <!-- Moon details -->
-                    <section>
-                        <h2 class="h5 mb-2">Moon Details</h2>
-                        <p id="moon-info" class="mb-0">Loading...</p>
-                    </section>
+                        <!-- Moon details -->
+                        <section>
+                            <h2 class="h5 mb-2">Moon Details</h2>
+                            <p id="moon-info" class="mb-0">Loading...</p>
+                        </section>
+                    </div>
                 </div>
 
-                <!-- Right Column: Location form -->
+                <!-- Right Column: Location & White Days -->
                 <div class="col-md-6 mb-4">
+                    <!-- White Days / Countdown -->
+                    <div id="white-days-container" class="mb-3 text-center text-light">
+                        <strong id="white-days-status"></strong>
+                        <div id="white-days-countdown" style="display:none; font-size: 0.9rem; margin-top: 0.25rem;"></div>
+                    </div>
+
+                    <!-- Right Column: Location form -->
                     <section class="mt-4">
                         <h2 class="h5 text-center mb-3">Select Location</h2>
                         <form id="location-form" class="row g-3 justify-content-center">
@@ -110,6 +126,7 @@
                     </section>
                 </div>
             </div>
+
         </main>
 
 
@@ -126,3 +143,27 @@
         <script src="js/script.js"></script>
     </body>
 </html>
+
+
+
+
+
+
+ <!--
+                <div class="col-md-6 mb-4">
+                    <section class="mt-4">
+                        <h2 class="h5 text-center mb-3">Select Location</h2>
+                        <form id="location-form" class="row g-3 justify-content-center">
+                            <div class="col-6 mb-3">
+                                <label for="country" class="form-label">Country</label>
+                                <select id="country" class="form-select bg-black text-light border-light" required>
+                                    <option value="">Country</option>
+                                </select>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-light mt-3">Show Moon</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                -->
