@@ -157,8 +157,10 @@ $(document).ready(function () {
         const $preloader = $("#moon-preloader");
         const $moonContent = $("#moon-content");
 
-        $moonContent.hide();   // hide content while loading
+        // Hide content initially
+        $moonContent.hide();
         $preloader.show();
+        $moonImg.css("opacity", 0);
 
         window.moonImageReady = false;
         window.moonDetailsReady = false;
@@ -167,13 +169,16 @@ $(document).ready(function () {
             .done(function(data) {
                 console.log("Moon Image API Response:", data);
                 if (data.status === "success" && data.imageUrl) {
-                    $moonImg.attr("src", data.imageUrl);
-                    $moonImg.on("load", function() {
-                        window.moonImageReady = true;
-                        if (window.moonDetailsReady) {
-                            $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
-                        }
-                    });
+                    $moonImg.off("load")
+                            .attr("src", data.imageUrl)
+                            .one("load", function() {
+                                $(this).css("opacity", 1);
+                                window.moonImageReady = true;
+                                // Only show content if details are ready
+                                if (window.moonDetailsReady) {
+                                    $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
+                                }
+                            });
                 } else {
                     console.warn("Moon image not available");
                     window.moonImageReady = true;
@@ -191,10 +196,13 @@ $(document).ready(function () {
             });
     }
 
+
+    // AJAX call for moon details
     function fetchMoonDetails(lat, lon, date) {
         const $preloader = $("#moon-preloader");
         const $moonContent = $("#moon-content");
 
+        // Don't show content yet — wait for image
         $.getJSON("api/moon-details.php", { lat, lon, date })
             .done(function(data) {
                 console.log("Moon Details API Response:", data);
@@ -208,6 +216,7 @@ $(document).ready(function () {
                     $("#moon-info").text("Error: " + (data.message || "Unknown error"));
                 }
                 window.moonDetailsReady = true;
+                // Only show content if image is ready
                 if (window.moonImageReady) {
                     $preloader.fadeOut(400, () => $moonContent.fadeIn(400));
                 }
@@ -220,6 +229,7 @@ $(document).ready(function () {
                 }
             });
     }
+
 
 
 

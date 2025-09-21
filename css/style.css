@@ -122,13 +122,18 @@ footer {
    Moon background transparent
 --------------------------------*/
 
-.moon-img {
-    mix-blend-mode: screen; /* or lighten, depending on your background */
-    background-color: transparent;
+#moon-content {
+    background: transparent;  /* ensure container is transparent */
+    position: relative;
 }
 
-
-
+/* Moon image starts invisible and fades in */
+#moon-img {
+    mix-blend-mode: screen; 
+    background-color: transparent;
+    opacity: 0;           /* start invisible */
+    transition: opacity 0.5s ease-in-out; /* smooth fade-in */
+}
 
 
 
