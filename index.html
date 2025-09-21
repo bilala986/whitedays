@@ -105,9 +105,16 @@
                 <div class="col-md-6 mb-4">
                     <!-- Right Column: Location form -->
                     <section class="mt-4">
-                        <!-- White Day Info + Countdown -->
-                        <div id="white-day-info" class="text-center mb-4 text-light"></div> <!-- Added mb-4 for gap -->
+                        <!-- White Day Countdown Preloader -->
+                        <div id="white-day-preloader" class="text-center mb-2" style="display:none;">
+                            <div class="spinner-border text-light" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
 
+                        <!-- White Day Info + Countdown -->
+                        <div id="white-day-info" class="text-center mb-4 text-light"></div>
+                        
                         <h2 class="h5 text-center mb-3">Select Location</h2>
                         <form id="location-form" class="row g-3 justify-content-center">
                             <div class="col-6 mb-3">
