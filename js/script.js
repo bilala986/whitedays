@@ -9,18 +9,43 @@ $(document).ready(function () {
     const $hijriYear = $("#hijri-year");
     const $countrySelect = $("#country");
     const $gregorianDate = $("#gregorian-date");
+    const hijriMonths = [
+        "", // index 0 placeholder (since months are 1–12)
+        "Muharram",
+        "Safar",
+        "Rabiʿ al-Awwal",
+        "Rabiʿ al-Thani",
+        "Jumada al-Awwal",
+        "Jumada al-Thani",
+        "Rajab",
+        "Shaʿban",
+        "Ramadan",
+        "Shawwal",
+        "Dhu al-Qiʿdah",
+        "Dhu al-Hijjah"
+    ];
+
 
     // --- Hijri & Gregorian date display ---
     function updateHijri() {
         const todayHijri = HijriJS.today();
         if (todayHijri) {
-            // Hijri date
-            $hijriInfo.text(`${todayHijri.day}/${todayHijri.month}/${todayHijri.year} H`);
+            // --- Main display: numeric only ---
+            $hijriInfo.text(`${todayHijri.day}/${String(todayHijri.month).padStart(2, "0")}/${todayHijri.year}H`);
+
+            // --- Modal display: with month name ---
+            const hijriMonths = [
+                "Muharram", "Safar", "Rabiʿ al-Awwal", "Rabiʿ al-Thani",
+                "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Shaʿban",
+                "Ramadan", "Shawwal", "Dhu al-Qadah", "Dhu al-Hijjah"
+            ];
+            const monthName = hijriMonths[todayHijri.month - 1];
+
             $hijriDay.text(`Day: ${todayHijri.day}`);
-            $hijriMonth.text(`Month: ${todayHijri.month}`);
+            $hijriMonth.text(`Month: ${monthName}`);
             $hijriYear.text(`Year: ${todayHijri.year}`);
 
-            // Gregorian date in same format
+            // Gregorian date numeric (unchanged)
             const todayGregorian = new Date();
             const dd = String(todayGregorian.getDate()).padStart(2, "0");
             const mm = String(todayGregorian.getMonth() + 1).padStart(2, "0");
@@ -31,6 +56,8 @@ $(document).ready(function () {
             $gregorianDate.text("");
         }
     }
+
+
 
 
     updateHijri(); // Call once on page load
@@ -140,8 +167,195 @@ $(document).ready(function () {
 
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // -----------------------------
+    // Utility: Generate days of a month
+    // -----------------------------
+    function generateMonthDays(year, month) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        return Array.from({ length: daysInMonth }, (_, i) => i + 1);
+    }
+
+    // -----------------------------
+    // Utility: Approximate Hijri conversion (Gregorian -> Hijri)
+    // -----------------------------
+    function getHijriDate(gDate = new Date()) {
+        // Very rough approximation
+        const hijriEpoch = new Date(622, 6, 16); // July 16, 622 CE
+        const dayMs = 1000 * 60 * 60 * 24;
+        const diffDays = Math.floor((gDate - hijriEpoch) / dayMs);
+        const hijriYear = Math.floor(diffDays / 354.367) + 1; // lunar year ~354.367 days
+        const hijriMonth = Math.floor((diffDays % 354.367) / 29.53);
+        const hijriDay = Math.floor((diffDays % 29.53)) + 1;
+        return { hijriYear, hijriMonth, hijriDay };
+    }
+
+    // -----------------------------
+    // Utility: Calculate moon phase info
+    // Returns: { age, phaseName, iconClass }
+    // -----------------------------
+    function getMoonPhaseInfo(year, month, day) {
+        const knownNewMoon = new Date(2000, 0, 6); // Jan 6, 2000 known new moon
+        const date = new Date(year, month, day);
+        const diff = (date - knownNewMoon) / (1000 * 60 * 60 * 24);
+        const synodicMonth = 29.53058867;
+        let age = diff % synodicMonth;
+        if (age < 0) age += synodicMonth;
+
+        let phaseName = '';
+        let iconClass = '';
+
+        if (age < 1.84566) { phaseName = 'New Moon'; iconClass = 'bi-moon'; }
+        else if (age < 5.53699) { phaseName = 'Waxing Crescent'; iconClass = 'bi-moon-stars-fill'; }
+        else if (age < 9.22831) { phaseName = 'First Quarter'; iconClass = 'bi-moon-half'; }
+        else if (age < 12.91963) { phaseName = 'Waxing Gibbous'; iconClass = 'bi-moon-fill'; }
+        else if (age < 16.61096) { phaseName = 'Full Moon'; iconClass = 'bi-moon-fill'; }
+        else if (age < 20.30228) { phaseName = 'Waning Gibbous'; iconClass = 'bi-moon-fill bi-waning'; }
+        else if (age < 23.99361) { phaseName = 'Last Quarter'; iconClass = 'bi-moon-half bi-waning'; }
+        else { phaseName = 'Waning Crescent'; iconClass = 'bi-moon-stars-fill bi-waning'; }
+
+        return { age: age.toFixed(1), phaseName, iconClass };
+    }
+
+    // -----------------------------
+    // Populate a calendar modal in week-grid layout
+    // modalSelector = '#lunarCalendarModal' or '#gregorianCalendarModal'
+    // -----------------------------
+    function populateCalendar(modalSelector, isHijri = false) {
+        const container = document.querySelector(`${modalSelector} .modal-body .d-flex`);
+        if (!container) return;
+
+        container.innerHTML = ''; // clear previous content
+        container.style.flexDirection = 'column';
+        container.style.alignItems = 'center'; // center the calendar
+
+        const today = new Date();
+        const hijriToday = getHijriDate(today);
+        const days = generateMonthDays(today.getFullYear(), today.getMonth());
+
+        // Month name
+        const monthNameDiv = document.createElement('div');
+        monthNameDiv.className = 'fw-bold mb-3 text-center';
+        monthNameDiv.textContent = isHijri 
+            ? `Hijri Month ${hijriToday.hijriMonth + 1}, ${hijriToday.hijriYear}`
+            : today.toLocaleString('default', { month: 'long', year: 'numeric' });
+        container.parentElement.insertBefore(monthNameDiv, container);
+
+        // Day headers
+        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const headerRow = document.createElement('div');
+        headerRow.className = 'd-flex justify-content-center gap-2 mb-2';
+        daysOfWeek.forEach(dayName => {
+            const dayHeader = document.createElement('div');
+            dayHeader.className = 'text-center fw-bold';
+            dayHeader.style.width = '60px';
+            dayHeader.textContent = dayName;
+            headerRow.appendChild(dayHeader);
+        });
+        container.appendChild(headerRow);
+
+        // Week grid
+        const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
+        let weekRow = document.createElement('div');
+        weekRow.className = 'd-flex justify-content-center gap-2 mb-2';
+
+        // Add empty slots before first day
+        for (let i = 0; i < firstDay; i++) {
+            const emptyDiv = document.createElement('div');
+            emptyDiv.style.width = '60px';
+            weekRow.appendChild(emptyDiv);
+        }
+
+        days.forEach((day, idx) => {
+            const { age, phaseName, iconClass } = getMoonPhaseInfo(today.getFullYear(), today.getMonth(), day);
+
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'text-center';
+            dayDiv.style.width = '60px';
+            dayDiv.style.padding = '2px';
+
+            // Highlight current date
+            const isCurrent = isHijri ? (day === hijriToday.hijriDay) : (day === today.getDate());
+            if (isCurrent) {
+                dayDiv.style.backgroundColor = '#555'; // light grey background
+                dayDiv.style.borderRadius = '0.5rem';
+            }
+
+            const dayNumber = document.createElement('div');
+            dayNumber.className = 'fw-bold mb-1'; // small gap below number
+            dayNumber.textContent = day;
+
+            const moonIcon = document.createElement('i');
+            moonIcon.className = `${iconClass} fs-4`;
+            moonIcon.title = `${phaseName} (Age: ${age} days)`;
+
+            dayDiv.appendChild(dayNumber);
+            dayDiv.appendChild(moonIcon);
+            weekRow.appendChild(dayDiv);
+
+            // End of week
+            if ((idx + firstDay + 1) % 7 === 0) {
+                container.appendChild(weekRow);
+                weekRow = document.createElement('div');
+                weekRow.className = 'd-flex justify-content-center gap-2 mb-2';
+            }
+        });
+
+        // Append last row
+        if (weekRow.children.length > 0) {
+            // Fill remaining cells to keep alignment
+            while (weekRow.children.length < 7) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.style.width = '60px';
+                weekRow.appendChild(emptyDiv);
+            }
+            container.appendChild(weekRow);
+        }
+
+        // Disclaimer
+        const disclaimer = document.createElement('p');
+        disclaimer.className = 'mt-3 small text-secondary text-center';
+        disclaimer.textContent = 'Disclaimer: These values are approximate and may be slightly inaccurate.';
+        container.parentElement.appendChild(disclaimer);
+    }
 
 
+
+
+    // -----------------------------
+    // Event listeners for modals
+    // -----------------------------
+    document.getElementById('lunarCalendarModal')
+        .addEventListener('show.bs.modal', () => populateCalendar('#lunarCalendarModal', true));
+
+    document.getElementById('gregorianCalendarModal')
+        .addEventListener('show.bs.modal', () => populateCalendar('#gregorianCalendarModal'));
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

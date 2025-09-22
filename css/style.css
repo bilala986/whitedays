@@ -15,16 +15,52 @@ select:disabled {
 }
 
 
+
+
+
+
 /* ------------------------------
-   Base Body & Background
+   Base Body & Dark Space Background
 --------------------------------*/
 body {
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #0a0a1a, #000000);
+    background: #050510; /* almost black */
     color: #f0f0f0;
     position: relative;
     overflow-x: hidden;
+    min-height: 100vh;
 }
+
+/* Nebula Tint Overlay (centered + diagonal) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse 100% 55% at 50% 50%, rgba(180, 82, 255, 0.08), transparent 35%),
+        radial-gradient(ellipse 110% 60% at 50% 50%, rgba(255, 82, 160, 0.06), transparent 40%),
+        radial-gradient(ellipse 95% 50% at 50% 50%, rgba(120, 50, 200, 0.05), transparent 45%);
+    transform: rotate(-25deg); /* diagonal */
+    transform-origin: center;
+    animation: nebulaFloat 200s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Gentle random drift */
+@keyframes nebulaFloat {
+    0%   { transform: rotate(-25deg) translate(0%, 0%) scale(1); }
+    25%  { transform: rotate(-25deg) translate(2%, -1%) scale(1.02); }
+    50%  { transform: rotate(-25deg) translate(-1%, 2%) scale(1.03); }
+    75%  { transform: rotate(-25deg) translate(1%, -2%) scale(1.02); }
+    100% { transform: rotate(-25deg) translate(0%, 0%) scale(1); }
+}
+
+
+
 
 
 /* ------------------------------

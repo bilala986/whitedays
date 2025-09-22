@@ -10,7 +10,8 @@
 
         <!-- Bootstrap CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap-icons.css">
+        <!-- Bootstrap Icons CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -24,10 +25,102 @@
 
         <!-- Header -->
         <header class="text-center py-4 border-bottom border-secondary">
-            <h1 class="fw-bold">🌙 Ayyam al-Bid (أيّام البیض)</h1>
+            <h1 class="fw-bold">Ayyam al-Bid (أيّام البیض)</h1>
             <p class="text-secondary mb-0">Track the Moon for Islamic White Days (13th, 14th, 15th of Hijri)</p>
         </header>
 
+        
+        <!-- Sidebar Button (Top-left for mobile) -->
+        <button class="btn btn-outline-light position-fixed top-0 start-0 m-3 d-md-none" 
+                type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" 
+                aria-controls="sidebarMenu">
+            <i class="bi bi-list"></i>
+        </button>
+        
+        <!-- Offcanvas Sidebar (mobile) -->
+        <div class="offcanvas offcanvas-start text-light bg-dark" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h5 class="offcanvas-title" id="sidebarMenuLabel">Info Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="list-group list-group-flush">
+                    <!-- Lunar Calendar -->
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0"
+                        data-bs-toggle="modal" data-bs-target="#lunarCalendarModal">
+                        <i class="bi bi-moon me-2"></i>Lunar Calendar
+                    </button>
+                    <!-- Gregorian Calendar -->
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0"
+                        data-bs-toggle="modal" data-bs-target="#gregorianCalendarModal">
+                        <i class="bi bi-calendar me-2"></i>Gregorian Calendar
+                    </button>
+                    
+                    <!-- Existing items -->
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
+                        data-bs-toggle="modal" data-bs-target="#whiteDaysModal">
+                        <i class="bi bi-info-circle me-2"></i>White Days Info
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
+                        data-bs-toggle="modal" data-bs-target="#howToFastModal">
+                        <i class="bi bi-calendar-check me-2"></i>How to Fast
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
+                            data-bs-toggle="modal" data-bs-target="#resourcesModal">
+                        <i class="bi bi-book me-2"></i>Resources
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
+                            data-bs-toggle="modal" data-bs-target="#virtuesModal">
+                        <i class="bi bi-stars me-2"></i>Virtues
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
+                            data-bs-toggle="modal" data-bs-target="#fastingModal">
+                        <i class="bi bi-sun me-2"></i>Fasting Recommendations
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
+                            data-bs-toggle="modal" data-bs-target="#hijriMonthsModal">
+                        <i class="bi bi-calendar-event me-2"></i>Hijri Months
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Sidebar (md+) -->
+        <div class="d-none d-md-flex flex-column position-fixed start-0 ms-3 mt-5 desktop-sidebar" style="z-index: 1000;">
+            <!-- Lunar Calendar -->
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#lunarCalendarModal">
+                <i class="bi bi-moon"></i>
+            </button>
+            <!-- Gregorian Calendar -->
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#gregorianCalendarModal">
+                <i class="bi bi-calendar"></i>
+            </button>
+            
+            <!-- Existing items -->
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#whiteDaysModal">
+                <i class="bi bi-info-circle"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#howToFastModal">
+                <i class="bi bi-calendar-check"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#resourcesModal">
+                <i class="bi bi-book"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#virtuesModal">
+                <i class="bi bi-stars"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#fastingModal">
+                <i class="bi bi-sun"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#hijriMonthsModal">
+                <i class="bi bi-calendar-event"></i>
+            </button>
+        </div>
+
+
+
+
+        
         <!-- Main Content -->
         <main class="container my-5">
 
@@ -83,7 +176,7 @@
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: transparent;  /* changed from black */
+                        background: transparent;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -137,8 +230,214 @@
                     </section>
                 </div>
             </div>
-
         </main>
+        
+        
+        
+        
+        
+        
+        
+        <!-- Lunar Calendar Modal -->
+        <div class="modal fade" id="lunarCalendarModal" tabindex="-1" aria-labelledby="lunarCalendarModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content bg-dark text-light">
+              <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title" id="lunarCalendarModalLabel">Lunar Calendar</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p class="mb-3">Shows the lunar phases for each day.</p>
+                <div class="d-flex flex-wrap justify-content-start gap-2">
+                  <!-- Example day -->
+                  <div class="text-center" style="width: 60px;">
+                    <div class="fw-bold">1</div>
+                    <i class="bi bi-moon-fill fs-4"></i>
+                  </div>
+                  <div class="text-center" style="width: 60px;">
+                    <div class="fw-bold">2</div>
+                    <i class="bi bi-moon-stars-fill fs-4"></i>
+                  </div>
+                  <div class="text-center" style="width: 60px;">
+                    <div class="fw-bold">3</div>
+                    <i class="bi bi-moon fs-4"></i>
+                  </div>
+                  <!-- repeat for other days dynamically -->
+                </div>
+              </div>
+              <div class="modal-footer border-top border-secondary">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gregorian Calendar Modal -->
+        <div class="modal fade" id="gregorianCalendarModal" tabindex="-1" aria-labelledby="gregorianCalendarModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content bg-dark text-light">
+              <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title" id="gregorianCalendarModalLabel">Gregorian Calendar</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p class="mb-3">Shows the moon phase for each Gregorian day.</p>
+                <div class="d-flex flex-wrap justify-content-start gap-2">
+                  <!-- Example day -->
+                  <div class="text-center" style="width: 60px;">
+                    <div class="fw-bold">1</div>
+                    <i class="bi bi-moon-fill fs-4"></i>
+                  </div>
+                  <div class="text-center" style="width: 60px;">
+                    <div class="fw-bold">2</div>
+                    <i class="bi bi-moon-stars-fill fs-4"></i>
+                  </div>
+                  <div class="text-center" style="width: 60px;">
+                    <div class="fw-bold">3</div>
+                    <i class="bi bi-moon fs-4"></i>
+                  </div>
+                  <!-- repeat for other days dynamically -->
+                </div>
+              </div>
+              <div class="modal-footer border-top border-secondary">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        
+        
+        <div class="modal fade" id="whiteDaysModal" tabindex="-1" aria-labelledby="whiteDaysLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="whiteDaysLabel">White Days Info</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>The White Days are the 13th, 14th, and 15th of each Hijri month. These are recommended days to fast, based on Sunnah...</p>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="modal fade" id="howToFastModal" tabindex="-1" aria-labelledby="howToFastLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="howToFastLabel">How to Fast</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Fasting involves abstaining from food, drink, and other invalidating actions from dawn (Fajr) until sunset (Maghrib)...</p>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="modal fade" id="resourcesModal" tabindex="-1" aria-labelledby="resourcesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="resourcesLabel">Helpful Resources</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li><a href="#" class="text-light">Authentic Hadith Collections</a></li>
+                            <li><a href="#" class="text-light">Quranic Fasting Guidance</a></li>
+                            <li><a href="#" class="text-light">Islamic Calendar Resources</a></li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="modal fade" id="virtuesModal" tabindex="-1" aria-labelledby="virtuesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="virtuesLabel">Virtues of White Days</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Sahih Muslim: Fasting the white days is highly recommended.</li>
+                            <li>Prophet ﷺ said: "Fast three days of each month, it expiates sins..."</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="modal fade" id="fastingModal" tabindex="-1" aria-labelledby="fastingLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="fastingLabel">Fasting Recommendations</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Other recommended fasts include Mondays & Thursdays, the Day of Arafah, and the Ashura fast.</p>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="hijriMonthsModal" tabindex="-1" aria-labelledby="hijriMonthsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="hijriMonthsLabel">Hijri Months Overview</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Muharram – Month of sacredness, beginning of the Hijri year.</li>
+                            <li>Safar – Month of caution, historical events.</li>
+                            <li>Rabi’ al-awwal – Month of the Prophet ﷺ’s birth.</li>
+                            <li>...</li>
+                            <li>Ramadan – Month of fasting.</li>
+                            <li>Dhul Hijjah – Hajj and Eid al-Adha.</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
+        
+        
 
 
 
