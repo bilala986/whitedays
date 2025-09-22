@@ -15,6 +15,9 @@
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        
+        <!-- Font Awesome 6 (Free) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
         <!-- Custom Styles -->
         <link rel="stylesheet" href="css/style.css">
@@ -36,7 +39,7 @@
                 aria-controls="sidebarMenu">
             <i class="bi bi-list"></i>
         </button>
-        
+
         <!-- Offcanvas Sidebar (mobile) -->
         <div class="offcanvas offcanvas-start text-light bg-dark" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
             <div class="offcanvas-header border-bottom border-secondary">
@@ -45,18 +48,10 @@
             </div>
             <div class="offcanvas-body">
                 <div class="list-group list-group-flush">
-                    <!-- Lunar Calendar -->
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0"
-                        data-bs-toggle="modal" data-bs-target="#lunarCalendarModal">
-                        <i class="bi bi-moon me-2"></i>Lunar Calendar
+                        data-bs-toggle="modal" data-bs-target="#calendarModal">
+                        <i class="bi bi-calendar me-2"></i>Calendar
                     </button>
-                    <!-- Gregorian Calendar -->
-                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0"
-                        data-bs-toggle="modal" data-bs-target="#gregorianCalendarModal">
-                        <i class="bi bi-calendar me-2"></i>Gregorian Calendar
-                    </button>
-                    
-                    <!-- Existing items -->
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
                         data-bs-toggle="modal" data-bs-target="#whiteDaysModal">
                         <i class="bi bi-info-circle me-2"></i>White Days Info
@@ -66,19 +61,19 @@
                         <i class="bi bi-calendar-check me-2"></i>How to Fast
                     </button>
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
-                            data-bs-toggle="modal" data-bs-target="#resourcesModal">
+                        data-bs-toggle="modal" data-bs-target="#resourcesModal">
                         <i class="bi bi-book me-2"></i>Resources
                     </button>
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
-                            data-bs-toggle="modal" data-bs-target="#virtuesModal">
+                        data-bs-toggle="modal" data-bs-target="#virtuesModal">
                         <i class="bi bi-stars me-2"></i>Virtues
                     </button>
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
-                            data-bs-toggle="modal" data-bs-target="#fastingModal">
+                        data-bs-toggle="modal" data-bs-target="#fastingModal">
                         <i class="bi bi-sun me-2"></i>Fasting Recommendations
                     </button>
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
-                            data-bs-toggle="modal" data-bs-target="#hijriMonthsModal">
+                        data-bs-toggle="modal" data-bs-target="#hijriMonthsModal">
                         <i class="bi bi-calendar-event me-2"></i>Hijri Months
                     </button>
                 </div>
@@ -87,16 +82,10 @@
 
         <!-- Desktop Sidebar (md+) -->
         <div class="d-none d-md-flex flex-column position-fixed start-0 ms-3 mt-5 desktop-sidebar" style="z-index: 1000;">
-            <!-- Lunar Calendar -->
-            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#lunarCalendarModal">
-                <i class="bi bi-moon"></i>
-            </button>
-            <!-- Gregorian Calendar -->
-            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#gregorianCalendarModal">
+            <!-- Unified Calendar -->
+            <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#calendarModal">
                 <i class="bi bi-calendar"></i>
             </button>
-            
-            <!-- Existing items -->
             <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#whiteDaysModal">
                 <i class="bi bi-info-circle"></i>
             </button>
@@ -116,6 +105,7 @@
                 <i class="bi bi-calendar-event"></i>
             </button>
         </div>
+
 
 
 
@@ -238,86 +228,88 @@
         
         
         
-        <!-- Lunar Calendar Modal -->
-        <div class="modal fade" id="lunarCalendarModal" tabindex="-1" aria-labelledby="lunarCalendarModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <div class="modal-content bg-dark text-light">
-              <div class="modal-header border-bottom border-secondary">
-                <h5 class="modal-title" id="lunarCalendarModalLabel">Lunar Calendar</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p class="mb-3">Shows the lunar phases for each day.</p>
-                <div class="d-flex flex-wrap justify-content-start gap-2">
-                  <!-- Example day -->
-                  <div class="text-center" style="width: 60px;">
-                    <div class="fw-bold">1</div>
-                    <i class="bi bi-moon-fill fs-4"></i>
-                  </div>
-                  <div class="text-center" style="width: 60px;">
-                    <div class="fw-bold">2</div>
-                    <i class="bi bi-moon-stars-fill fs-4"></i>
-                  </div>
-                  <div class="text-center" style="width: 60px;">
-                    <div class="fw-bold">3</div>
-                    <i class="bi bi-moon fs-4"></i>
-                  </div>
-                  <!-- repeat for other days dynamically -->
+        <!-- Unified Calendar Modal -->
+        <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-bottom border-secondary">
+                        <h5 class="modal-title" id="calendarModalLabel">Calendar</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Toggle buttons -->
+                        <div class="mb-3 d-flex justify-content-center gap-2">
+                            <button id="toggleLunar" class="btn btn-outline-light active">Lunar</button>
+                            <button id="toggleGregorian" class="btn btn-outline-light">Gregorian</button>
+                        </div>
+
+                        <p id="calendar-description" class="mb-3 text-center">Shows the moon phase for each Lunar day.</p>
+                        <div class="d-flex flex-wrap justify-content-start gap-2" id="calendar-container">
+                            <!-- Calendar days will be populated dynamically -->
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
-              </div>
-              <div class="modal-footer border-top border-secondary">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-              </div>
             </div>
-          </div>
         </div>
 
-        <!-- Gregorian Calendar Modal -->
-        <div class="modal fade" id="gregorianCalendarModal" tabindex="-1" aria-labelledby="gregorianCalendarModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <div class="modal-content bg-dark text-light">
-              <div class="modal-header border-bottom border-secondary">
-                <h5 class="modal-title" id="gregorianCalendarModalLabel">Gregorian Calendar</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p class="mb-3">Shows the moon phase for each Gregorian day.</p>
-                <div class="d-flex flex-wrap justify-content-start gap-2">
-                  <!-- Example day -->
-                  <div class="text-center" style="width: 60px;">
-                    <div class="fw-bold">1</div>
-                    <i class="bi bi-moon-fill fs-4"></i>
-                  </div>
-                  <div class="text-center" style="width: 60px;">
-                    <div class="fw-bold">2</div>
-                    <i class="bi bi-moon-stars-fill fs-4"></i>
-                  </div>
-                  <div class="text-center" style="width: 60px;">
-                    <div class="fw-bold">3</div>
-                    <i class="bi bi-moon fs-4"></i>
-                  </div>
-                  <!-- repeat for other days dynamically -->
-                </div>
-              </div>
-              <div class="modal-footer border-top border-secondary">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
 
         
         
         
         <div class="modal fade" id="whiteDaysModal" tabindex="-1" aria-labelledby="whiteDaysLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header border-bottom border-secondary">
                         <h5 class="modal-title" id="whiteDaysLabel">White Days Info</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>The White Days are the 13th, 14th, and 15th of each Hijri month. These are recommended days to fast, based on Sunnah...</p>
+                        <p>The <strong>White Days</strong> are the 13th, 14th, and 15th of each Hijri month. These days are recommended for fasting based on the Sunnah of the Prophet ﷺ. Fasting during these days is considered virtuous and brings extra reward.</p>
+
+                        <p>Prophet Muhammad ﷺ said:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                <span class="small">"The fasts of the three days of each month are like fasting the entire month."</span> <br>
+                                <small>عن أبي هريرة رضي الله عنه: قال رسول الله ﷺ: «صيام ثلاثة أيام من كل شهر، كصيام الدهر»</small>
+                            </p>
+                        </blockquote>
+
+                        <p>These days are called "Ayyam al-Beed" (<em>White Days</em>) because the moon is full and shines brightly.</p>
+
+                        <p>The Quran encourages fasting in general:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                <span class="small">"O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous."</span> <br>
+                                <small>يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ (البقرة: 183)</small>
+                            </p>
+                        </blockquote>
+
+                        <p>Fasting on the White Days has additional benefits:</p>
+                        <ul>
+                            <li>It helps purify the soul and body.</li>
+                            <li>It is a Sunnah practice for increased reward.</li>
+                            <li>It aligns with the natural lunar calendar and the rhythm of the moon.</li>
+                        </ul>
+
+                        <p>Recommended practice:</p>
+                        <ul>
+                            <li>Fast the 13th, 14th, and 15th of each lunar month.</li>
+                            <li>Intend the fasts sincerely for Allah’s sake.</li>
+                            <li>You may combine with voluntary prayers or dhikr.</li>
+                        </ul>
+
+                        <p>Prophet Muhammad ﷺ also said:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                <span class="small">"Fasting three days of every month is like fasting the whole year."</span> <br>
+                                <small>عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ: «صيام ثلاثة أيام من كل شهر، كصيام الدهر»</small>
+                            </p>
+                        </blockquote>
+
+                        <p><em>Hover over any date in the calendar to see the corresponding moon phase.</em></p>
                     </div>
                     <div class="modal-footer border-top border-secondary">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -326,17 +318,60 @@
             </div>
         </div>
 
+
+
         
         
         <div class="modal fade" id="howToFastModal" tabindex="-1" aria-labelledby="howToFastLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header border-bottom border-secondary">
                         <h5 class="modal-title" id="howToFastLabel">How to Fast</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Fasting involves abstaining from food, drink, and other invalidating actions from dawn (Fajr) until sunset (Maghrib)...</p>
+                        <p>Fasting (<strong>Ṣiyām</strong>) is a form of worship where a person abstains from food, drink, and other actions that invalidate the fast from dawn (<em>Fajr</em>) until sunset (<em>Maghrib</em>), intending the fast sincerely for Allah's sake. It is a highly recommended practice, especially during Ramadan, voluntary fasts, and the White Days.</p>
+
+                        <p>The Qur’an commands fasting during Ramadan:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                <span class="small">"O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous."</span> <br>
+                                <small>يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ (البقرة: 183)</small>
+                            </p>
+                        </blockquote>
+
+                        <p>The Prophet ﷺ explained how to fast properly:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                <span class="small">"Fasting is a shield; when one of you is fasting, he should avoid obscene language and foolish behavior. If someone fights him or insults him, let him say: ‘I am fasting.’"</span> <br>
+                                <small>عن أبي هريرة رضي الله عنه، قال: قال رسول الله ﷺ: «الصوم جنة، فإذا كان أحدكم صائمًا فلا يرفث ولا يصخب»</small>
+                            </p>
+                        </blockquote>
+
+                        <p>Other key rules for fasting include:</p>
+                        <ul>
+                            <li>Intend your fast before dawn.</li>
+                            <li>Abstain from food, drink, sexual activity, and other invalidating acts.</li>
+                            <li>Break the fast immediately at sunset with a nutritious meal.</li>
+                            <li>Maintain good manners, patience, and remembrance of Allah throughout the day.</li>
+                        </ul>
+
+                        <p>Voluntary fasts and Sunnah practices:</p>
+                        <ul>
+                            <li>Fasting on Mondays and Thursdays.</li>
+                            <li>The White Days: 13th, 14th, and 15th of each lunar month.</li>
+                            <li>Fasting the Day of Arafah (9th of Dhul-Hijjah) and Ashura (10th of Muharram).</li>
+                        </ul>
+
+                        <p>Prophet Muhammad ﷺ emphasized the spiritual benefit of fasting:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                <span class="small">"Whoever fasts Ramadan with faith and seeking reward, all his past sins will be forgiven."</span> <br>
+                                <small>عن ابن عباس رضي الله عنه: قال رسول الله ﷺ: «من صام رمضان إيمانًا واحتسابًا غفر له ما تقدم من ذنبه»</small>
+                            </p>
+                        </blockquote>
+
+                        <p><em>Hover over any date in the calendar to see the corresponding moon phase.</em></p>
                     </div>
                     <div class="modal-footer border-top border-secondary">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -345,20 +380,49 @@
             </div>
         </div>
 
+
         
         
         <div class="modal fade" id="resourcesModal" tabindex="-1" aria-labelledby="resourcesLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header border-bottom border-secondary">
                         <h5 class="modal-title" id="resourcesLabel">Helpful Resources</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <p>Here are some useful resources for learning about fasting, Islamic practices, and the lunar calendar:</p>
                         <ul>
-                            <li><a href="#" class="text-light">Authentic Hadith Collections</a></li>
-                            <li><a href="#" class="text-light">Quranic Fasting Guidance</a></li>
-                            <li><a href="#" class="text-light">Islamic Calendar Resources</a></li>
+                            <li>
+                                <a href="https://sunnah.com/" target="_blank" class="text-light">
+                                    Authentic Hadith Collections (Sahih Bukhari, Sahih Muslim, etc.)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://quran.com/2/183" target="_blank" class="text-light">
+                                    Quranic Guidance on Fasting (Surah Al-Baqarah 2:183-185)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.islamicfinder.org/islamic-calendar/" target="_blank" class="text-light">
+                                    Islamic Calendar Resources (Hijri dates & events)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://islamqa.info/en" target="_blank" class="text-light">
+                                    Fatwas and Fasting Rules (IslamQA)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.soundvision.com/article/how-to-fast-during-ramadan" target="_blank" class="text-light">
+                                    Step-by-step Guide: How to Fast During Ramadan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.alim.org/quran/" target="_blank" class="text-light">
+                                    Quran Explorer & Tafsir Resources
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="modal-footer border-top border-secondary">
@@ -368,20 +432,52 @@
             </div>
         </div>
 
+
         
         
         <div class="modal fade" id="virtuesModal" tabindex="-1" aria-labelledby="virtuesLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header border-bottom border-secondary">
                         <h5 class="modal-title" id="virtuesLabel">Virtues of White Days</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <p>The <strong>White Days</strong> (Ayyam al-Beed) are highly virtuous days for fasting, and the Prophet ﷺ emphasized their reward:</p>
+
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                "Fasting three days of every month is like fasting the whole year." <br>
+                                <small style="font-size: 0.85em;">عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ: «صيام ثلاثة أيام من كل شهر، كصيام الدهر»</small>
+                            </p>
+                        </blockquote>
+
+                        <p>Fasting on these days is considered <em>nafl</em> (voluntary) but carries immense reward. It is a means of purification and spiritual elevation.</p>
+
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                "The fasts of the three days of each month are like fasting the entire month." <br>
+                                <small style="font-size: 0.85em;">عن أبي هريرة رضي الله عنه: قال رسول الله ﷺ: «صيام ثلاثة أيام من كل شهر، كصيام الدهر»</small>
+                            </p>
+                        </blockquote>
+
+                        <p>The White Days also align with the lunar cycle, particularly the full moon, highlighting the harmony between worship and nature.</p>
+
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                "Fast on the days of white (13th, 14th, 15th of each month)." <br>
+                                <small style="font-size: 0.85em;">الأيام البيض (الثالث عشر، الرابع عشر، والخامس عشر من كل شهر)</small>
+                            </p>
+                        </blockquote>
+
+                        <p>Additional virtues:</p>
                         <ul>
-                            <li>Sahih Muslim: Fasting the white days is highly recommended.</li>
-                            <li>Prophet ﷺ said: "Fast three days of each month, it expiates sins..."</li>
+                            <li>Forgiveness of minor sins.</li>
+                            <li>Spiritual discipline and mindfulness of Allah.</li>
+                            <li>Following the Sunnah of the Prophet ﷺ.</li>
                         </ul>
+
+                        <p><em>Hover over any date in the calendar to see the corresponding moon phase.</em></p>
                     </div>
                     <div class="modal-footer border-top border-secondary">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -390,17 +486,59 @@
             </div>
         </div>
 
+
         
         
         <div class="modal fade" id="fastingModal" tabindex="-1" aria-labelledby="fastingLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header border-bottom border-secondary">
                         <h5 class="modal-title" id="fastingLabel">Fasting Recommendations</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Other recommended fasts include Mondays & Thursdays, the Day of Arafah, and the Ashura fast.</p>
+                        <p>Fasting in Islam is a highly rewarding act of worship. Beyond the obligatory fasts of Ramadan, several <strong>voluntary (Nafl) fasts</strong> are recommended throughout the year. These include:</p>
+
+                        <ul>
+                            <li><strong>White Days (Ayyam al-Beed)</strong>: 13th, 14th, 15th of each Hijri month.</li>
+                            <li><strong>Mondays and Thursdays</strong>: The Prophet ﷺ preferred fasting on these days.</li>
+                            <li><strong>Day of Arafah</strong> (9th Dhul-Hijjah): Highly recommended for non-pilgrims.</li>
+                            <li><strong>Day of Ashura</strong> (10th Muharram): Expiates sins of the previous year if done properly.</li>
+                            <li><strong>Six Days of Shawwal</strong>: Fasting six days after Eid al-Fitr complements Ramadan.</li>
+                        </ul>
+
+                        <p>Prophet Muhammad ﷺ said:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                "The best of fasting after Ramadan is the month of Allah, Muharram, and the best of prayer after the obligatory prayer is at night." <br>
+                                <small style="font-size: 0.85em;">عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ: «أفضل الصيام بعد رمضان شهر الله المحرم، وأفضل الصلاة بعد الفريضة صلاة الليل»</small>
+                            </p>
+                        </blockquote>
+
+                        <p>Fasting etiquette and rules:</p>
+                        <ul>
+                            <li>Begin the fast at <strong>Fajr (dawn)</strong> and break it at <strong>Maghrib (sunset)</strong>.</li>
+                            <li>Intend the fast sincerely for Allah’s sake (<em>niyyah</em>).</li>
+                            <li>Avoid anything that invalidates the fast, including food, drink, and inappropriate speech or actions.</li>
+                            <li>It is recommended to start with <strong>Suhur</strong> (pre-dawn meal) and break the fast with <strong>Iftar</strong> (sunset meal), preferably dates and water.</li>
+                        </ul>
+
+                        <p>Additional benefits of voluntary fasting:</p>
+                        <ul>
+                            <li>Spiritual purification and increased consciousness of Allah.</li>
+                            <li>Expiation of minor sins and cultivation of patience.</li>
+                            <li>Following the Sunnah of the Prophet ﷺ, which brings immense reward.</li>
+                        </ul>
+
+                        <p>Prophet ﷺ also said regarding Monday & Thursday fasting:</p>
+                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                            <p class="mb-0">
+                                "Deeds are presented to Allah on Mondays and Thursdays, so I like my deeds to be presented while I am fasting." <br>
+                                <small style="font-size: 0.85em;">عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ: «تُعرض الأعمال يوم الاثنين والخميس، فأحب أن يُعرض عملي وأنا صائم»</small>
+                            </p>
+                        </blockquote>
+
+                        <p><em>Hover over any date in the calendar to see the corresponding moon phase.</em></p>
                     </div>
                     <div class="modal-footer border-top border-secondary">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -408,6 +546,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="modal fade" id="hijriMonthsModal" tabindex="-1" aria-labelledby="hijriMonthsLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -417,14 +556,208 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <ul>
-                            <li>Muharram – Month of sacredness, beginning of the Hijri year.</li>
-                            <li>Safar – Month of caution, historical events.</li>
-                            <li>Rabi’ al-awwal – Month of the Prophet ﷺ’s birth.</li>
-                            <li>...</li>
-                            <li>Ramadan – Month of fasting.</li>
-                            <li>Dhul Hijjah – Hajj and Eid al-Adha.</li>
-                        </ul>
+                        <p>The <strong>Hijri calendar</strong> is lunar-based with 12 months. Click a month to see more details including relevant Hadith or Quranic references.</p>
+
+                        <div class="accordion" id="hijriMonthsAccordion">
+                            <!-- Muharram -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingMuharram">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMuharram" aria-expanded="false" aria-controls="collapseMuharram">
+                                        Muharram (محرم)
+                                    </button>
+                                </h2>
+                                <div id="collapseMuharram" class="accordion-collapse collapse" aria-labelledby="headingMuharram" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Month of sacredness. The 10th of Muharram is known as <strong>Ashura</strong>, recommended for fasting.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“Fasting on the day of Ashura expiates sins of the previous year.”<br>
+                                            <small>عن ابن عباس رضي الله عنهما قال: قال رسول الله ﷺ: «صيام يوم عاشوراء، أحتسب على الله أن يكفر السنة التي قبله»</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Safar -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingSafar">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafar" aria-expanded="false" aria-controls="collapseSafar">
+                                        Safar (صفر)
+                                    </button>
+                                </h2>
+                                <div id="collapseSafar" class="accordion-collapse collapse" aria-labelledby="headingSafar" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Month traditionally considered inauspicious. No explicit Sunnah is mandated for fasting, but voluntary acts of worship are encouraged.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rabiʿ al-Awwal -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingRabi1">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRabi1" aria-expanded="false" aria-controls="collapseRabi1">
+                                        Rabiʿ al-Awwal (ربيع الأول)
+                                    </button>
+                                </h2>
+                                <div id="collapseRabi1" class="accordion-collapse collapse" aria-labelledby="headingRabi1" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Month of the Prophet ﷺ’s birth. While celebrating Milad is a cultural practice, remembrance of the Prophet ﷺ is recommended year-round.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“Love of Allah is tied to love of His Messenger.”<br>
+                                            <small>قال رسول الله ﷺ: «لا يؤمن أحدكم حتى أكون أحب إليه من والده وولده والناس أجمعين»</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rabiʿ al-Thani -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingRabi2">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRabi2" aria-expanded="false" aria-controls="collapseRabi2">
+                                        Rabiʿ al-Thani (ربيع الآخر)
+                                    </button>
+                                </h2>
+                                <div id="collapseRabi2" class="accordion-collapse collapse" aria-labelledby="headingRabi2" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Continuation of spring months, ideal for voluntary worship and reflection.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Jumada al-Awwal -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingJumada1">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJumada1" aria-expanded="false" aria-controls="collapseJumada1">
+                                        Jumada al-Awwal (جمادى الأول)
+                                    </button>
+                                </h2>
+                                <div id="collapseJumada1" class="accordion-collapse collapse" aria-labelledby="headingJumada1" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Winter month; no specific obligatory fasting, but voluntary deeds are meritorious.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Jumada al-Thani -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingJumada2">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJumada2" aria-expanded="false" aria-controls="collapseJumada2">
+                                        Jumada al-Thani (جمادى الآخرة)
+                                    </button>
+                                </h2>
+                                <div id="collapseJumada2" class="accordion-collapse collapse" aria-labelledby="headingJumada2" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Another winter month, recommended for reflection and voluntary worship.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rajab -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingRajab">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRajab" aria-expanded="false" aria-controls="collapseRajab">
+                                        Rajab (رجب)
+                                    </button>
+                                </h2>
+                                <div id="collapseRajab" class="accordion-collapse collapse" aria-labelledby="headingRajab" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>One of the four sacred months. Fasting and acts of worship are highly recommended.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“Rajab is Allah’s month, its beginning is mercy, its middle is forgiveness, its end is salvation.”<br>
+                                            <small>(Sunan al-Daraqutni, Hasan)</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shaʿban -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingShaban">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseShaban" aria-expanded="false" aria-controls="collapseShaban">
+                                        Shaʿban (شعبان)
+                                    </button>
+                                </h2>
+                                <div id="collapseShaban" class="accordion-collapse collapse" aria-labelledby="headingShaban" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Month before Ramadan. Prophet ﷺ fasted frequently in Shaʿban to prepare for Ramadan.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“I do not observe any fast more than in the month of Sha‘ban.”<br>
+                                            <small>رواه البخاري ومسلم</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ramadan -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingRamadan">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRamadan" aria-expanded="false" aria-controls="collapseRamadan">
+                                        Ramadan (رمضان)
+                                    </button>
+                                </h2>
+                                <div id="collapseRamadan" class="accordion-collapse collapse" aria-labelledby="headingRamadan" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Month of obligatory fasting, revelation of the Qur’an, and increased acts of worship.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“O you who believe! Fasting is prescribed for you as it was for those before you, so that you may become righteous.”<br>
+                                            <small>يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ (البقرة: 183)</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shawwal -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingShawwal">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseShawwal" aria-expanded="false" aria-controls="collapseShawwal">
+                                        Shawwal (شوّال)
+                                    </button>
+                                </h2>
+                                <div id="collapseShawwal" class="accordion-collapse collapse" aria-labelledby="headingShawwal" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Six days of voluntary fasting recommended after Eid al-Fitr.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“Whoever fasts Ramadan then six days of Shawwal, it is like fasting the entire year.”<br>
+                                            <small>رواه مسلم</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dhu al-Qiʿdah -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingDhulQ">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDhulQ" aria-expanded="false" aria-controls="collapseDhulQ">
+                                        Dhu al-Qiʿdah (ذو القعدة)
+                                    </button>
+                                </h2>
+                                <div id="collapseDhulQ" class="accordion-collapse collapse" aria-labelledby="headingDhulQ" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Sacred month preceding Hajj. Recommended for peace, reflection, and voluntary worship.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dhu al-Hijjah -->
+                            <div class="accordion-item bg-dark text-light border-secondary mb-2">
+                                <h2 class="accordion-header" id="headingDhulH">
+                                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDhulH" aria-expanded="false" aria-controls="collapseDhulH">
+                                        Dhu al-Hijjah (ذو الحجة)
+                                    </button>
+                                </h2>
+                                <div id="collapseDhulH" class="accordion-collapse collapse" aria-labelledby="headingDhulH" data-bs-parent="#hijriMonthsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Month of Hajj pilgrimage. Fasting on the Day of Arafah (9th) is highly recommended.</p>
+                                        <blockquote class="blockquote ps-3 border-start border-secondary bg-secondary bg-opacity-10 fst-italic">
+                                            <p class="mb-0">“Fasting on the Day of Arafah expiates the sins of two years: the past and the coming year.”<br>
+                                            <small>رواه مسلم</small></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p class="mt-3"><em>Hover over the calendar dates to see the corresponding moon phase for each day.</em></p>
                     </div>
                     <div class="modal-footer border-top border-secondary">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -432,6 +765,8 @@
                 </div>
             </div>
         </div>
+
+
 
         
         
