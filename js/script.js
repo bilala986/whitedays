@@ -9,21 +9,13 @@ $(document).ready(function () {
     const $hijriYear = $("#hijri-year");
     const $countrySelect = $("#country");
     const $gregorianDate = $("#gregorian-date");
-    const hijriMonths = [
-        "", // index 0 placeholder (since months are 1–12)
-        "Muharram",
-        "Safar",
-        "Rabiʿ al-Awwal",
-        "Rabiʿ al-Thani",
-        "Jumada al-Awwal",
-        "Jumada al-Thani",
-        "Rajab",
-        "Shaʿban",
-        "Ramadan",
-        "Shawwal",
-        "Dhu al-Qiʿdah",
-        "Dhu al-Hijjah"
-    ];
+    const gregorianMonths = [
+    "January","February","March","April","May","June","July","August","September","October","November","December"
+];
+
+const hijriMonths = [
+    "Muharram","Safar","Rabi’ al-Awwal","Rabi’ al-Thani","Jumada al-Awwal","Jumada al-Thani","Rajab","Sha’ban","Ramadan","Shawwal","Dhul Qa’dah","Dhul Hijjah"
+];
 
 
     // --- Hijri & Gregorian date display ---
@@ -70,10 +62,6 @@ $(document).ready(function () {
         const dd = String(date.getDate()).padStart(2, "0");
         return `${yyyy}-${mm}-${dd}`;
     }
-    
-    
-    
-    
     
     
     
@@ -257,327 +245,6 @@ $(document).ready(function () {
 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // -----------------------------
-    // Utility: Generate days of a month
-    // -----------------------------
-    function generateMonthDays(year, month) {
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        return Array.from({ length: daysInMonth }, (_, i) => i + 1);
-    }
-
-    // -----------------------------
-    // Utility: Approximate Hijri conversion (Gregorian -> Hijri)
-    // -----------------------------
-    function getHijriDate(gDate = new Date()) {
-        // Very rough approximation
-        const hijriEpoch = new Date(622, 6, 16); // July 16, 622 CE
-        const dayMs = 1000 * 60 * 60 * 24;
-        const diffDays = Math.floor((gDate - hijriEpoch) / dayMs);
-        const hijriYear = Math.floor(diffDays / 354.367) + 1; // lunar year ~354.367 days
-        const hijriMonth = Math.floor((diffDays % 354.367) / 29.53);
-        const hijriDay = Math.floor((diffDays % 29.53)) + 1;
-        return { hijriYear, hijriMonth, hijriDay };
-    }
-
-    // -----------------------------
-    // Calculate moon phase info (returns Font Awesome icons)
-    // Returns: { age, phaseName, iconClass, transform }
-    // -----------------------------
-    function getMoonPhaseInfo(year, month, day) {
-        const knownNewMoon = new Date(2000, 0, 6);
-        const date = new Date(year, month, day);
-        const diff = (date - knownNewMoon) / (1000 * 60 * 60 * 24);
-        const synodicMonth = 29.53058867;
-        let age = diff % synodicMonth;
-        if (age < 0) age += synodicMonth;
-
-        let phaseName = '';
-        let iconClass = '';
-        let transform = '';
-
-        if (age < 1.84566) {
-            phaseName = 'New Moon';
-            iconClass = 'fa-regular fa-circle';
-        } else if (age < 5.53699) {
-            phaseName = 'Waxing Crescent';
-            iconClass = 'fa-solid fa-moon';
-            transform = 'scaleX(1)';
-        } else if (age < 9.22831) {
-            phaseName = 'First Quarter';
-            iconClass = 'fa-solid fa-moon';
-            transform = 'scaleX(1)';
-        } else if (age < 12.91963) {
-            phaseName = 'Waxing Gibbous';
-            iconClass = 'fa-solid fa-moon';
-            transform = 'scaleX(1)';
-        } else if (age < 16.61096) {
-            phaseName = 'Full Moon';
-            iconClass = 'fa-solid fa-circle';
-        } else if (age < 20.30228) {
-            phaseName = 'Waning Gibbous';
-            iconClass = 'fa-solid fa-moon';
-            transform = 'scaleX(-1)';
-        } else if (age < 23.99361) {
-            phaseName = 'Last Quarter';
-            iconClass = 'fa-solid fa-moon';
-            transform = 'scaleX(-1)';
-        } else {
-            phaseName = 'Waning Crescent';
-            iconClass = 'fa-solid fa-moon';
-            transform = 'scaleX(-1)';
-        }
-
-        return { age: age.toFixed(1), phaseName, iconClass, transform };
-    }
-
-
-
-    let currentCalendar = 'lunar'; // default
-
-    // -----------------------------
-    // Populate calendar
-    // -----------------------------
-    function populateCalendar(isHijri = false) {
-        const container = document.getElementById('calendar-container');
-        container.innerHTML = '';
-        container.style.justifyContent = 'center'; // center the calendar
-
-        const today = new Date();
-        const hijriToday = getHijriDate(today);
-        const year = today.getFullYear();
-        const month = today.getMonth();
-        const days = generateMonthDays(year, month);
-
-        // Month name
-        const monthNameDiv = document.createElement('div');
-        monthNameDiv.className = 'fw-bold mb-3 text-center';
-        monthNameDiv.id = 'calendar-month-name';
-        monthNameDiv.textContent = isHijri
-            ? `${hijriMonths[hijriToday.hijriMonth]} ${hijriToday.hijriYear} H`
-            : today.toLocaleString('default', { month: 'long', year: 'numeric' });
-
-        // Remove old month name if exists
-        const oldMonthName = document.getElementById('calendar-month-name');
-        if (oldMonthName) oldMonthName.remove();
-
-        container.parentElement.insertBefore(monthNameDiv, container);
-
-        // Days of week header
-        const daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const headerRow = document.createElement('div');
-        headerRow.className = 'd-flex justify-content-center gap-2 mb-2 calendar-header-row';
-        daysOfWeek.forEach(dayName => {
-            const dayHeader = document.createElement('div');
-            dayHeader.className = 'text-center fw-bold';
-            dayHeader.style.width = '60px';
-            dayHeader.textContent = dayName;
-            headerRow.appendChild(dayHeader);
-        });
-        container.appendChild(headerRow);
-
-        // Week grid
-        const firstDay = isHijri
-            ? (new Date(year, month, 1).getDay() + hijriToday.hijriDay - 1) % 7
-            : new Date(year, month, 1).getDay();
-        let weekRow = document.createElement('div');
-        weekRow.className = 'd-flex justify-content-center gap-2 mb-2';
-
-        // Empty slots before first day
-        for (let i = 0; i < firstDay; i++) {
-            const emptyDiv = document.createElement('div');
-            emptyDiv.style.width = '60px';
-            weekRow.appendChild(emptyDiv);
-        }
-
-        // Populate days
-        days.forEach((day, idx) => {
-            const { age, phaseName, iconClass, transform } = getMoonPhaseInfo(year, month, day);
-
-            const dayDiv = document.createElement('div');
-            dayDiv.className = 'text-center';
-            dayDiv.style.width = '60px';
-            dayDiv.style.padding = '2px';
-
-            // Highlight current date
-            const isCurrent = isHijri ? (day === hijriToday.hijriDay) : (day === today.getDate());
-            if (isCurrent) {
-                dayDiv.style.backgroundColor = '#555';
-                dayDiv.style.borderRadius = '0.5rem';
-            }
-
-            const dayNumber = document.createElement('div');
-            dayNumber.className = 'fw-bold mb-1';
-            dayNumber.textContent = day;
-
-            const moonIcon = document.createElement('i');
-            moonIcon.className = `${iconClass} fs-4`;
-            moonIcon.title = `${phaseName} (Age: ${age} days)`;
-
-            if (transform) {
-                moonIcon.style.transform = transform;
-            }
-
-            dayDiv.appendChild(dayNumber);
-            dayDiv.appendChild(moonIcon);
-            weekRow.appendChild(dayDiv);
-
-            if ((idx + firstDay + 1) % 7 === 0) {
-                container.appendChild(weekRow);
-                weekRow = document.createElement('div');
-                weekRow.className = 'd-flex justify-content-center gap-2 mb-2';
-            }
-        });
-
-        // Fill remaining slots in last week
-        if (weekRow.children.length > 0) {
-            while (weekRow.children.length < 7) {
-                const emptyDiv = document.createElement('div');
-                emptyDiv.style.width = '60px';
-                weekRow.appendChild(emptyDiv);
-            }
-            container.appendChild(weekRow);
-        }
-    }
-
-    // -----------------------------
-    // Update calendar view with fade
-    // -----------------------------
-    function updateCalendarView() {
-        const isHijri = currentCalendar === 'lunar';
-        const container = document.getElementById('calendar-container');
-        const monthNameDiv = document.getElementById('calendar-month-name');
-        const headerRow = document.querySelector('.calendar-header-row');
-
-        // Fade out
-        [container, monthNameDiv, headerRow].forEach(el => el?.classList.add('fade-out'));
-
-        setTimeout(() => {
-            populateCalendar(isHijri);
-
-            // Update description
-            const description = document.getElementById('calendar-description');
-            description.innerHTML = isHijri
-                ? 'Shows the moon phase for each Lunar day.<br><small style="color: #ccc; font-weight: normal;">Hover over the moon icon to see the phase and age.</small>'
-                : 'Shows the moon phase for each Gregorian day.<br><small style="color: #ccc; font-weight: normal;">Hover over the moon icon to see the phase and age.</small>';
-
-
-
-
-            // Toggle button active states
-            document.getElementById('toggleLunar').classList.toggle('active', isHijri);
-            document.getElementById('toggleGregorian').classList.toggle('active', !isHijri);
-
-            // Fade in
-            [document.getElementById('calendar-container'), 
-             document.getElementById('calendar-month-name'), 
-             document.querySelector('.calendar-header-row')].forEach(el => el?.classList.remove('fade-out'));
-        }, 200); // fade duration
-    }
-
-
-
-
-    // -----------------------------
-    // Toggle button events
-    // -----------------------------
-    document.getElementById('toggleLunar').addEventListener('click', () => {
-        currentCalendar = 'lunar';
-        updateCalendarView();
-    });
-
-    document.getElementById('toggleGregorian').addEventListener('click', () => {
-        currentCalendar = 'gregorian';
-        updateCalendarView();
-    });
-
-    // -----------------------------
-    // Modal show event
-    // -----------------------------
-    document.getElementById('calendarModal').addEventListener('show.bs.modal', updateCalendarView);
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 
 
     let countriesData = [];
@@ -666,5 +333,218 @@ $(document).ready(function () {
         // Show countdown preloader and update white day info for selected country
         updateWhiteDayInfo(lat, lon);
     });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Toggle between Hijri and Gregorian in Unified Calendar
+    document.getElementById('toggleHijriCalendar').addEventListener('click', function () {
+        document.getElementById('hijriCalendar').classList.remove('d-none');
+        document.getElementById('gregorianCalendar').classList.add('d-none');
+        this.classList.add('active');
+        document.getElementById('toggleGregorianCalendar').classList.remove('active');
+    });
+
+    document.getElementById('toggleGregorianCalendar').addEventListener('click', function () {
+        document.getElementById('gregorianCalendar').classList.remove('d-none');
+        document.getElementById('hijriCalendar').classList.add('d-none');
+        this.classList.add('active');
+        document.getElementById('toggleHijriCalendar').classList.remove('active');
+    });
+    
+    // Moon phase calculation helper (simplified)
+    function getMoonPhaseIcon(date) {
+        const lp = 2551443; // lunar period in seconds
+        const now = date.getTime() / 1000;
+        const newMoon = new Date(2000, 0, 6, 18, 14).getTime() / 1000;
+        const phase = ((now - newMoon) % lp) / lp;
+
+        if (phase < 0.03 || phase > 0.97) return '<i class="fa-solid fa-moon"></i>';        // New Moon
+        if (phase < 0.22) return '<i class="fa-regular fa-moon"></i>';                      // Waxing Crescent
+        if (phase < 0.28) return '<i class="fa-solid fa-circle-half-stroke"></i>';          // First Quarter
+        if (phase < 0.47) return '<i class="fa-regular fa-circle"></i>';                     // Waxing Gibbous
+        if (phase < 0.53) return '<i class="fa-solid fa-circle"></i>';                       // Full Moon
+        if (phase < 0.72) return '<i class="fa-regular fa-circle"></i>';                     // Waning Gibbous
+        if (phase < 0.78) return '<i class="fa-solid fa-circle-half-stroke"></i>';           // Last Quarter
+        return '<i class="fa-regular fa-moon"></i>';                                         // Waning Crescent
+    }
+
+    // Build Gregorian Calendar
+    function buildGregorianCalendar() {
+        const tbody = document.getElementById('gregorianCalendarBody');
+        tbody.innerHTML = "";
+
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth();
+
+        // Set header month/year
+        document.getElementById("gregorianMonthYear").innerText =
+            `${gregorianMonths[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1).getDay(); // Sunday=0
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        let row = document.createElement('tr');
+
+        // Blank cells before first day
+        for (let i = 0; i < firstDay; i++) {
+            row.appendChild(document.createElement('td'));
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            if (row.children.length === 7) {
+                tbody.appendChild(row);
+                row = document.createElement('tr');
+            }
+
+            // Normalize date to noon to match Hijri calendar calculation
+            const gDate = new Date(year, month, day);
+            gDate.setHours(12, 0, 0, 0);
+
+            const hijriDate = HijriJS.gregorianToHijri(year, month + 1, day);
+
+            const cell = document.createElement('td');
+            cell.innerHTML = `
+                <div>${day}</div>
+                <div class="small">${getMoonPhaseIcon(gDate)}</div>
+            `;
+
+            // Highlight White Days (Hijri 13–15)
+            if (hijriDate.day >= 13 && hijriDate.day <= 15) {
+                cell.classList.add("table-secondary", "text-dark");
+                cell.querySelector("div:first-child").classList.add("fw-bold"); // only day number bold
+            }
+
+            // Highlight Today (Gregorian, exact match)
+            if (
+                gDate.getDate() === today.getDate() &&
+                gDate.getMonth() === today.getMonth() &&
+                gDate.getFullYear() === today.getFullYear()
+            ) {
+                cell.classList.add("table-active"); // light grey bg
+                cell.querySelector("div:first-child").classList.add("fw-bold"); // only day number bold
+            }
+
+            row.appendChild(cell);
+        }
+
+        // Fill the rest of the row
+        while (row.children.length < 7) {
+            row.appendChild(document.createElement('td'));
+        }
+        tbody.appendChild(row);
+    }
+
+    // Build Hijri Calendar
+    function buildHijriCalendar() {
+        const tbody = document.getElementById('hijriCalendarBody');
+        tbody.innerHTML = "";
+
+        const today = HijriJS.today();
+        const hijriYear = today.year;
+        const hijriMonth = today.month;
+
+        // Set header month/year
+        document.getElementById("hijriMonthYear").innerText =
+            `${hijriMonths[hijriMonth - 1]} ${hijriYear} AH`;
+
+        const monthIndex = (hijriYear - 1) * 12 + hijriMonth - 1;
+        const nextMonthIndex = monthIndex + 1;
+        let daysInMonth = HijriJS.ummalqura_dat[nextMonthIndex] - HijriJS.ummalqura_dat[monthIndex];
+        if (!daysInMonth) daysInMonth = 30;
+
+        const firstHijriDate = HijriJS.hijriToGregorian(hijriYear, hijriMonth, 1);
+        // UTC weekday to fix misalignment
+        const firstDay = new Date(Date.UTC(firstHijriDate.gy, firstHijriDate.gm - 1, firstHijriDate.gd, 12, 0, 0)).getUTCDay();
+
+        let row = document.createElement('tr');
+
+        // Add empty cells before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+            row.appendChild(document.createElement('td'));
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            if (row.children.length === 7) {
+                tbody.appendChild(row);
+                row = document.createElement('tr');
+            }
+
+            const gDateObj = HijriJS.hijriToGregorian(hijriYear, hijriMonth, day);
+            const gDate = new Date(Date.UTC(gDateObj.gy, gDateObj.gm - 1, gDateObj.gd, 12, 0, 0)); // noon UTC
+
+            const cell = document.createElement('td');
+            cell.innerHTML = `
+                <div>${day}</div>
+                <div class="small">${getMoonPhaseIcon(gDate)}</div>
+            `;
+
+            if (day >= 13 && day <= 15) {
+                cell.classList.add("table-secondary", "text-dark");
+                cell.querySelector("div:first-child").classList.add("fw-bold");
+            }
+
+            if (day === today.day && hijriMonth === today.month && hijriYear === today.year) {
+                cell.classList.add("table-active");
+                cell.querySelector("div:first-child").classList.add("fw-bold");
+            }
+
+            row.appendChild(cell);
+        }
+
+        while (row.children.length < 7) {
+            row.appendChild(document.createElement('td'));
+        }
+        tbody.appendChild(row);
+    }
+
+
+
+    // Initialize both calendars when modal opens
+    $('#calendarModal').on('shown.bs.modal', function () {
+        buildGregorianCalendar();
+        buildHijriCalendar();
+    });
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 });

@@ -48,9 +48,10 @@
             </div>
             <div class="offcanvas-body">
                 <div class="list-group list-group-flush">
-                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0"
+                    <!-- Mobile Sidebar Item -->
+                    <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
                         data-bs-toggle="modal" data-bs-target="#calendarModal">
-                        <i class="bi bi-calendar me-2"></i>Calendar
+                        <i class="bi bi-calendar-range me-2"></i>Unified Calendar
                     </button>
                     <button type="button" class="list-group-item list-group-item-action bg-dark text-light border-0" 
                         data-bs-toggle="modal" data-bs-target="#whiteDaysModal">
@@ -82,9 +83,8 @@
 
         <!-- Desktop Sidebar (md+) -->
         <div class="d-none d-md-flex flex-column position-fixed start-0 ms-3 mt-5 desktop-sidebar" style="z-index: 1000;">
-            <!-- Unified Calendar -->
             <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#calendarModal">
-                <i class="bi bi-calendar"></i>
+                <i class="bi bi-calendar-range"></i>
             </button>
             <button type="button" class="btn btn-outline-light mb-2" data-bs-toggle="modal" data-bs-target="#whiteDaysModal">
                 <i class="bi bi-info-circle"></i>
@@ -225,28 +225,59 @@
         
         
         
-        
-        
-        
-        <!-- Unified Calendar Modal -->
         <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header border-bottom border-secondary">
-                        <h5 class="modal-title" id="calendarModalLabel">Calendar</h5>
+                        <h5 class="modal-title" id="calendarModalLabel">Unified Calendar</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Toggle buttons -->
-                        <div class="mb-3 d-flex justify-content-center gap-2">
-                            <button id="toggleLunar" class="btn btn-outline-light active">Lunar</button>
-                            <button id="toggleGregorian" class="btn btn-outline-light">Gregorian</button>
+
+                        <!-- Toggle Buttons -->
+                        <div class="d-flex justify-content-center mb-3">
+                            <button id="toggleHijriCalendar" class="btn btn-outline-light me-2 active">Lunar (Hijri)</button>
+                            <button id="toggleGregorianCalendar" class="btn btn-outline-light">Gregorian</button>
                         </div>
 
-                        <p id="calendar-description" class="mb-3 text-center">Shows the moon phase for each Lunar day.</p>
-                        <div class="d-flex flex-wrap justify-content-start gap-2" id="calendar-container">
-                            <!-- Calendar days will be populated dynamically -->
+                        <!-- Hijri Calendar -->
+                        <div id="hijriCalendar" class="calendar-view">
+                            <h6 class="text-center mb-3">Lunar (Hijri) Calendar</h6>
+                            <div id="hijriMonthYear" class="text-center fw-bold mb-2"></div>
+                            <div class="text-center text-muted small mb-3">Hover over the dates to see moon phases.</div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-dark text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="hijriCalendarBody">
+                                        <!-- JS will populate -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
+                        <!-- Gregorian Calendar -->
+                        <div id="gregorianCalendar" class="calendar-view d-none">
+                            <h6 class="text-center mb-3">Gregorian Calendar</h6>
+                            <div id="gregorianMonthYear" class="text-center fw-bold mb-2"></div>
+                            <div class="text-center text-muted small mb-3">Hover over the dates to see moon phases.</div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-dark text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="gregorianCalendarBody">
+                                        <!-- JS will populate -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer border-top border-secondary">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
